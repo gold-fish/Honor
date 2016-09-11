@@ -130,6 +130,8 @@
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Utils\Newtonsoft.Json.dll" />
+    <Content Include="Wav\active.wav" />
+    <Content Include="Wav\inactive.wav" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
