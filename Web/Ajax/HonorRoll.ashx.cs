@@ -205,136 +205,143 @@ namespace Web.Ajax
         {
             StringBuilder strbldTeam = new StringBuilder();
             string strKey = string.Format("{1}str{0}", classId, itemType);
-            object obj = CacheHelper.GetCache(strKey);
             string strTeamHtl = string.Empty;
-            if (obj != null)
+
+            //只取科目下的分组排行榜
+            if (itemType == 1)
             {
-                JObject jObj = JObject.Parse(obj.ToString());
+                object obj = CacheHelper.GetCache(strKey);
 
-                if (jObj["error_code"].ToString().Trim().Equals("0"))
+                if (obj != null)
                 {
-                    #region
+                    JObject jObj = JObject.Parse(obj.ToString());
 
-                    JArray teamAarray = jObj["data"]["group"] as JArray;
-
-                    if (teamAarray != null && teamAarray.Count > 0)
+                    if (jObj["error_code"].ToString().Trim().Equals("0"))
                     {
-                        int teamCount = teamAarray.Count > (num + 3) ? (num + 3) : teamAarray.Count;
+                        #region
 
-                        for (int i = 0; i < teamCount; i++)
+                        JArray teamAarray = jObj["data"]["group"] as JArray;
+
+                        if (teamAarray != null && teamAarray.Count > 0)
                         {
-                            #region 获取组内成员姓名
+                            int teamCount = teamAarray.Count > (num + 3) ? (num + 3) : teamAarray.Count;
 
-                            JArray membersArr = teamAarray[i]["members"] as JArray;
-                            string stuNameStr = string.Empty;
-
-                            //判断组内是否有学生
-                            if (membersArr != null)
+                            for (int i = 0; i < teamCount; i++)
                             {
-                                int memberCount = membersArr.Count;
-                                int memberLen = memberCount >= 3 ? 3 : memberCount;
+                                #region 获取组内成员姓名
 
-                                //只取三个学生
-                                for (var k = 0; k < memberLen; k++)
+                                JArray membersArr = teamAarray[i]["members"] as JArray;
+                                string stuNameStr = string.Empty;
+
+                                //判断组内是否有学生
+                                if (membersArr != null)
                                 {
-                                    stuNameStr = stuNameStr + membersArr[k]["student_name"].ToString() + ",";
+                                    int memberCount = membersArr.Count;
+                                    int memberLen = memberCount >= 3 ? 3 : memberCount;
+
+                                    //只取三个学生
+                                    for (var k = 0; k < memberLen; k++)
+                                    {
+                                        stuNameStr = stuNameStr + membersArr[k]["student_name"].ToString() + ",";
+                                    }
+
+                                    stuNameStr = stuNameStr.TrimEnd(',');
+                                    stuNameStr = TextHelper.CutString(stuNameStr, 18, string.Empty);
                                 }
 
-                                stuNameStr = stuNameStr.TrimEnd(',');
-                                stuNameStr = TextHelper.CutString(stuNameStr, 18, string.Empty);
-                            }
+                                #endregion
 
-                            #endregion
+                                #region 前三名
 
-                            #region 前三名
-
-                            if (i < 3)
-                            {
-                                switch (i)
+                                if (i < 3)
                                 {
-                                    case 0:
-                                        strbldTeam.Append("<div id=\"groupLeft\"><div class=\"groupOne\"><div class=\"sortOne\"></div>");
-                                        strbldTeam.Append("<div class=\"people\">");
-                                        strbldTeam.AppendFormat("<div class=\"peopleTitle\">{0}</div>", teamAarray[0]["class_group_name"].ToString().Trim());
-                                        strbldTeam.AppendFormat("<div class=\"peopleName\">{0}</div>", stuNameStr);
-                                        strbldTeam.Append(string.Format("<div class=\"peopleImage\"><img style=\"width: 100%; height:100%;\" src='{0}'/></div>", ImgIsExists(teamAarray[0]["class_group_icon"].ToString().Trim())));
-                                        strbldTeam.AppendFormat("<div class=\"peopleScore\">{0}</div>", teamAarray[0]["score"].ToString().Trim());
-                                        strbldTeam.Append("</div></div>");
-                                        break;
-                                    case 1:
-                                        strbldTeam.Append("<div class=\"groupTwo\"><div class=\"sortTwo\"></div>");
-                                        strbldTeam.Append("<div class=\"people\">");
-                                        strbldTeam.AppendFormat("<div class=\"peopleTitle\">{0}</div>", teamAarray[1]["class_group_name"].ToString().Trim());
-                                        strbldTeam.AppendFormat("<div class=\"peopleName\">{0}</div>", stuNameStr);
-                                        strbldTeam.Append(string.Format("<div class=\"peopleImage\"><img style=\"width: 100%; height:100%;\" src='{0}'/></div>", ImgIsExists(teamAarray[1]["class_group_icon"].ToString().Trim())));
-                                        strbldTeam.AppendFormat("<div class=\"peopleScore\">{0}</div>", teamAarray[1]["score"].ToString().Trim());
-                                        strbldTeam.Append("</div></div>");
-                                        break;
-                                    case 2:
-                                        strbldTeam.Append("<div class=\"groupThree\"><div class=\"sortThree\"></div>");
-                                        strbldTeam.Append("<div class=\"people\">");
-                                        strbldTeam.AppendFormat("<div class=\"peopleTitle\">{0}</div>", teamAarray[2]["class_group_name"].ToString().Trim());
-                                        strbldTeam.AppendFormat("<div class=\"peopleName\">{0}</div>", stuNameStr);
-                                        strbldTeam.Append(string.Format("<div class=\"peopleImage\"><img style=\"width: 100%; height:100%;\" src='{0}'/></div>", ImgIsExists(teamAarray[2]["class_group_icon"].ToString().Trim())));
-                                        strbldTeam.AppendFormat("<div class=\"peopleScore\">{0}</div>", teamAarray[2]["score"].ToString().Trim());
-                                        strbldTeam.Append("</div></div>");
+                                    switch (i)
+                                    {
+                                        case 0:
+                                            strbldTeam.Append("<div id=\"groupLeft\"><div class=\"groupOne\"><div class=\"sortOne\"></div>");
+                                            strbldTeam.Append("<div class=\"people\">");
+                                            strbldTeam.AppendFormat("<div class=\"peopleTitle\">{0}</div>", teamAarray[0]["class_group_name"].ToString().Trim());
+                                            strbldTeam.AppendFormat("<div class=\"peopleName\">{0}</div>", stuNameStr);
+                                            strbldTeam.Append(string.Format("<div class=\"peopleImage\"><img style=\"width: 100%; height:100%;\" src='{0}'/></div>", ImgIsExists(teamAarray[0]["class_group_icon"].ToString().Trim())));
+                                            strbldTeam.AppendFormat("<div class=\"peopleScore\">{0}</div>", teamAarray[0]["score"].ToString().Trim());
+                                            strbldTeam.Append("</div></div>");
+                                            break;
+                                        case 1:
+                                            strbldTeam.Append("<div class=\"groupTwo\"><div class=\"sortTwo\"></div>");
+                                            strbldTeam.Append("<div class=\"people\">");
+                                            strbldTeam.AppendFormat("<div class=\"peopleTitle\">{0}</div>", teamAarray[1]["class_group_name"].ToString().Trim());
+                                            strbldTeam.AppendFormat("<div class=\"peopleName\">{0}</div>", stuNameStr);
+                                            strbldTeam.Append(string.Format("<div class=\"peopleImage\"><img style=\"width: 100%; height:100%;\" src='{0}'/></div>", ImgIsExists(teamAarray[1]["class_group_icon"].ToString().Trim())));
+                                            strbldTeam.AppendFormat("<div class=\"peopleScore\">{0}</div>", teamAarray[1]["score"].ToString().Trim());
+                                            strbldTeam.Append("</div></div>");
+                                            break;
+                                        case 2:
+                                            strbldTeam.Append("<div class=\"groupThree\"><div class=\"sortThree\"></div>");
+                                            strbldTeam.Append("<div class=\"people\">");
+                                            strbldTeam.AppendFormat("<div class=\"peopleTitle\">{0}</div>", teamAarray[2]["class_group_name"].ToString().Trim());
+                                            strbldTeam.AppendFormat("<div class=\"peopleName\">{0}</div>", stuNameStr);
+                                            strbldTeam.Append(string.Format("<div class=\"peopleImage\"><img style=\"width: 100%; height:100%;\" src='{0}'/></div>", ImgIsExists(teamAarray[2]["class_group_icon"].ToString().Trim())));
+                                            strbldTeam.AppendFormat("<div class=\"peopleScore\">{0}</div>", teamAarray[2]["score"].ToString().Trim());
+                                            strbldTeam.Append("</div></div>");
+                                            strbldTeam.Append("</div>");
+                                            break;
+                                    }
+                                }
+
+                                #endregion
+
+                                #region 其他排名
+
+                                if (i > 2 && i < 6)
+                                {
+                                    if (i == 3)
+                                    {
+                                        strbldTeam.Append("<div id=\"groupMiddle\">");
+                                    }
+                                    if (i < 6)
+                                    {
+                                        strbldTeam.AppendFormat("<div class=\"otherPeople\"><div class=\"otherSort\">{0}</div>", i + 1);
+                                        strbldTeam.AppendFormat("<div class=\"otherTitle\">{0}</div>", teamAarray[i]["class_group_name"].ToString().Trim());
+                                        strbldTeam.AppendFormat("<div class=\"otherName\">{0}</div>", stuNameStr);
+                                        strbldTeam.Append(string.Format("<div class=\"peopleImage2\"><img style=\"width: 100%; height:100%;\" src='{0}'/></div>", ImgIsExists(teamAarray[i]["class_group_icon"].ToString().Trim())));
+                                        strbldTeam.AppendFormat("<div class=\"otherScore\">{0}</div></div>", teamAarray[i]["score"].ToString().Trim());
+                                    }
+                                    if (i == 5)
+                                    {
                                         strbldTeam.Append("</div>");
-                                        break;
+                                    }
+                                    if (i == teamCount - 1)
+                                    {
+                                        strbldTeam.Append("</div>");
+                                    }
                                 }
+                                else if (i > 5 && i < 9)
+                                {
+                                    if (i == 6)
+                                    {
+                                        strbldTeam.Append("<div id=\"groupRight\">");
+                                    }
+                                    if (i < 9)
+                                    {
+                                        strbldTeam.AppendFormat("<div class=\"otherPeople\"><div class=\"otherSort\">{0}</div>", i + 1);
+                                        strbldTeam.AppendFormat("<div class=\"otherTitle\">{0}</div>", teamAarray[i]["class_group_name"].ToString().Trim());
+                                        strbldTeam.AppendFormat("<div class=\"otherName\">{0}</div>", stuNameStr);
+                                        strbldTeam.Append(string.Format("<div class=\"peopleImage2\"><img style=\"width: 100%; height:100%;\" src='{0}'/></div>", ImgIsExists(teamAarray[i]["class_group_icon"].ToString().Trim())));
+                                        strbldTeam.AppendFormat("<div class=\"otherScore\">{0}</div></div>", teamAarray[i]["score"].ToString().Trim());
+                                    }
+                                    if (i == teamCount - 1) { strbldTeam.Append("</div>"); }
+                                }
+
+                                #endregion
                             }
-
-                            #endregion
-
-                            #region 其他排名
-
-                            if (i > 2 && i < 6)
-                            {
-                                if (i == 3)
-                                {
-                                    strbldTeam.Append("<div id=\"groupMiddle\">");
-                                }
-                                if (i < 6)
-                                {
-                                    strbldTeam.AppendFormat("<div class=\"otherPeople\"><div class=\"otherSort\">{0}</div>", i + 1);
-                                    strbldTeam.AppendFormat("<div class=\"otherTitle\">{0}</div>", teamAarray[i]["class_group_name"].ToString().Trim());
-                                    strbldTeam.AppendFormat("<div class=\"otherName\">{0}</div>", stuNameStr);
-                                    strbldTeam.Append(string.Format("<div class=\"peopleImage2\"><img style=\"width: 100%; height:100%;\" src='{0}'/></div>", ImgIsExists(teamAarray[i]["class_group_icon"].ToString().Trim())));
-                                    strbldTeam.AppendFormat("<div class=\"otherScore\">{0}</div></div>", teamAarray[i]["score"].ToString().Trim());
-                                }
-                                if (i == 5) 
-                                { 
-                                    strbldTeam.Append("</div>");
-                                }
-                                if (i == teamCount - 1) 
-                                { 
-                                    strbldTeam.Append("</div>"); 
-                                }
-                            }
-                            else if (i > 5 && i < 9)
-                            {
-                                if (i == 6)
-                                {
-                                    strbldTeam.Append("<div id=\"groupRight\">");
-                                }
-                                if (i < 9)
-                                {
-                                    strbldTeam.AppendFormat("<div class=\"otherPeople\"><div class=\"otherSort\">{0}</div>", i + 1);
-                                    strbldTeam.AppendFormat("<div class=\"otherTitle\">{0}</div>", teamAarray[i]["class_group_name"].ToString().Trim());
-                                    strbldTeam.AppendFormat("<div class=\"otherName\">{0}</div>", stuNameStr);
-                                    strbldTeam.Append(string.Format("<div class=\"peopleImage2\"><img style=\"width: 100%; height:100%;\" src='{0}'/></div>", ImgIsExists(teamAarray[i]["class_group_icon"].ToString().Trim())));
-                                    strbldTeam.AppendFormat("<div class=\"otherScore\">{0}</div></div>", teamAarray[i]["score"].ToString().Trim());
-                                }
-                                if (i == teamCount - 1) { strbldTeam.Append("</div>"); }
-                            }
-
-                            #endregion
+                            strTeamHtl = strbldTeam.ToString();
                         }
-                        strTeamHtl = strbldTeam.ToString();
-                    }
 
-                    #endregion
-                }                
+                        #endregion
+                    }
+                }
             }
+
             return strTeamHtl;
         }
 

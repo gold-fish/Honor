@@ -39,7 +39,7 @@ namespace Web
 
                     string url = host + obj["avatar"].ToString().Trim();
 
-                    if (HttpHelper.IsImageExists(url))
+                    if (obj["avatar"].ToString().Trim() != string.Empty && HttpHelper.IsImageExists(url))
                     {
                         imgBig.ImageUrl = url;
                         imgSmall.ImageUrl = url;

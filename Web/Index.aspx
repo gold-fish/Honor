@@ -13,6 +13,7 @@
     <script type="text/javascript">
         $(function () {
             ShowData();
+            ShowDiffStyle();
             $("#rghm").removeClass("rightpPrsonal").removeClass("rightGroup").addClass("rightMiddle");
         });
 
@@ -20,10 +21,6 @@
             var classOrSubjectID = $("#hidClassId").val();
             var classType = $("#hidType").val();
             var detailType = $("#hidDetailType").val();
-
-            alert(classOrSubjectID);
-            alert(classType);
-            alert(detailType);
 
             loadHonorRollData();
 
@@ -53,6 +50,31 @@
             //显示右侧扣分榜
             GetRollDeatailData(id, type, "class");
             $("#rghm").removeClass("rightpPrsonal").removeClass("rightGroup").addClass("rightMiddle");
+
+            ShowDiffStyle();
+        }
+
+        //根据有无分组显示不同的样式
+        function ShowDiffStyle()
+        {
+            var type = $("#hidType").val();
+
+            if (type == 0) {
+                $("#groupDiv").removeClass("group").addClass("nogroup");
+                $("#content").removeClass("content").addClass("nocontent");
+                $("#main").removeClass("main").addClass("nomain");
+                $("#rightBottom").removeClass("rightBottom").addClass("norightBottom");
+                $("#rightRoll").removeClass("rightRoll").addClass("norightRoll");
+                $("#barTeam").removeClass("slide").addClass("noslide");
+            }
+            else {
+                $("#groupDiv").removeClass("nogroup").addClass("group");
+                $("#content").removeClass("nocontent").addClass("content");
+                $("#main").removeClass("nomain").addClass("main");
+                $("#rightBottom").removeClass("norightBottom").addClass("rightBottom");
+                $("#rightRoll").removeClass("norightRoll").addClass("rightRoll");
+                $("#barTeam").removeClass("noslide").addClass("slide");
+            }
         }
 
         function SelectDate(e, type) {
@@ -82,11 +104,11 @@
         <asp:HiddenField ID="hidClassId" runat="server" Value="" />
         <asp:HiddenField ID="hidType" runat="server" Value="" />
         <asp:HiddenField ID="hidDetailType" runat="server" Value="class" />
-        <div class="main">
+        <div class="main" id="main">
             <div class="header">
                 <div id="subjectList" style="height: 30px;padding-top:15px;font-size:14px; width: 400px; margin-left:142px;" runat="server"></div>
             </div>
-            <div class="content">
+            <div class="content" id="content">
                 <div class="leftContent">
                     <div class="student">
                         <div class="roll"></div>
@@ -110,7 +132,7 @@
                         </div>
                         <div id="studentHonorRoll"></div>
                     </div>
-                    <div class="group">
+                    <div class="group" id="groupDiv">
                         <div class="groupContent">
                             <div id="teamRoll"></div>
                         </div>
@@ -126,8 +148,8 @@
                         <div class="two"><span id="person">个人</span></div>
                         <div class="three"><span id="group">小组</span></div>
                     </div>
-                    <div class="rightBottom">
-                        <div id="rightRoll" style="max-height:754px;overflow-y:auto;margin-top:20px;"></div>
+                    <div class="rightBottom" id="rightBottom">
+                        <div id="rightRoll" class="rightRoll"></div>
                     </div>
                 </div>
             </div>
