@@ -13,6 +13,7 @@
     <script type="text/javascript">
         $(function () {
             ShowData();
+            $("#rghm").removeClass("rightpPrsonal").removeClass("rightGroup").addClass("rightMiddle");
         });
 
         function ShowData() {
@@ -20,13 +21,15 @@
             var classType = $("#hidType").val();
             var detailType = $("#hidDetailType").val();
 
+            alert(classOrSubjectID);
+            alert(classType);
+            alert(detailType);
+
             loadHonorRollData();
 
             //显示右侧扣分榜
             GetRollDeatailData(classOrSubjectID, classType, detailType);
-            $("#rghm").removeClass("rightpPrsonal").removeClass("rightGroup").addClass("rightMiddle");
-
-            setTimeout("ShowData()", 30000);
+            setTimeout("ShowData()", 3000);
         }
 
         function SelectSubject() {
@@ -44,6 +47,7 @@
             }
 
             $("#hidClassId").val(id);
+            $("#hidDetailType").val("class");
             loadHonorRollData();
 
             //显示右侧扣分榜
