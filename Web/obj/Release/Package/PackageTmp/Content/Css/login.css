@@ -1,0 +1,317 @@
+﻿body {
+     font: 12px/1.5 tahoma,arial,'Hiragino Sans GB',\5FAE\8F6F\96C5\9ED1,sans-serif;
+}
+.main {
+    width:1280px;
+    height:807px;
+    margin:0 auto;
+    background-image:url('../Images/bgLogin.png');
+    position:relative;
+}
+
+.logo{
+    width:192px;
+    height:31px;
+    position:absolute;
+    left:45px;
+    top:25px;
+    background-image:url('../Images/logo.png');
+}
+.phone{
+    width:520px;
+    height:547px;
+    position:absolute;
+    left:45px;
+    top:132px;
+    background-image:url('../Images/phone.png');
+}
+.titleOne{
+    width:448px;
+    height:64px;
+    position:absolute;
+    left:655px;
+    top:144px;
+    font-family:SourceHanSansCN-Medium;
+    font-size:64px;
+    color:#ffffff;
+    text-shadow:0px 2px 4px rgba(0,0,0,0.26);
+}
+.titleTwo{
+    width:324px;
+    height:18px;
+    position:absolute;
+    left:716px;
+    top:224px;
+    font-family:SourceHanSansCN-Medium;
+    font-size:18px;
+    color:#ffffff;
+    text-shadow:0px 2px 4px rgba(0,0,0,0.58);
+}
+.login{
+    width:477px;
+    height:418px;
+    position:absolute;
+    left:645px;
+    top:322px;
+    background:#ffffff;
+    box-shadow:0px 0px 4px 0px rgba(0,0,0,0.12), 0px 4px 4px 0px rgba(0,0,0,0.24);
+    border-radius:12.8px;
+}
+.loginTop{
+    width:477px;
+    height:74px;
+    background-image:url('../Images/loginTop.png');
+    padding-top:13px;
+}
+.loginImage{
+    width:61px;
+    height:61px;
+    background-image:url('../Images/loginImage.png');
+    margin:0 auto;
+}
+.loginTitle{
+    width:100px;
+    height:20px;
+    font-family:SourceHanSansCN-Normal;
+    font-size:20px;
+    color:rgba(0,0,0,0.58);
+    text-align:left;
+    margin-left:189px;
+    margin-top:3px;
+}
+.errorTip{
+    width:170px;
+    height:16px;
+    line-height:16px;
+    position:absolute;
+    top:110px;
+    left:45px;
+    color:red;
+    background:url('../Images/error.png') no-repeat;
+    text-indent:20px;
+    font-size:11.5px;
+    display:none;
+}
+.loginUserName,.loginPwd{
+    width:397px;
+    height:49px;
+    margin-left:46px;
+}
+.loginUserName{
+    margin-top:23px;
+    background-image:url('../Images/loginUserName.png');
+}
+.loginPwd{
+    margin-top:32px;
+    background-image:url('../Images/loginPwd.png');
+}
+.loginUserName input,.loginPwd input{
+    font-family:STHeitiSC-Medium;
+    font-size:16px;
+    color:rgba(0,0,0,0.26);
+    line-height:30px;
+    margin-top:8px;
+    margin-left:50px;
+    border-width:0;
+    text-indent:0;
+    background-color:#f7fafa;
+    width:300px;
+    height:30px;
+}
+.remDiv{
+    width:170px;
+    height:40px;
+    font-family:SourceHanSansCN-Normal;
+    font-size:16px;
+    color:#999999;
+    line-height:40px;
+    text-align:center;
+    float:left;
+}
+.forgetDiv{
+    font-family:SourceHanSansCN-Normal;
+    font-size:16px;
+    color:#00bcf2;
+    line-height:40px;
+    text-align:center;
+    width:140px;
+    height:40px;
+    float:right;
+}
+.loginRem{
+    width:100%;
+    float:left;
+}
+.loginBtn{
+    height:45px;
+    margin-left:46px;
+    width:395px;
+    float:left;
+}
+.registerDiv{
+    width:42px;
+    height:42px;
+    background-image:url('../Images/register.png');
+    float:left;
+}
+.load{
+    height:42px;
+    width:125px;
+    line-height:42px;
+    font-family:SourceHanSansCN-Normal;
+    font-size:16px;
+    color:#4f5570;
+    text-align:right;
+    float:left;
+}
+.loginDiv{
+    float:right;
+    color:red;
+}
+.loginDiv input{
+    font-family:STHeitiSC-Medium;
+    font-size:16px;
+    color:#f7fafa;
+    background-color:#4f5570;
+    border-width:0;
+    width:82px;
+    height:45px;
+    font-weight:bolder;
+    cursor:pointer;
+    border-radius:4.8px;
+}
+
+.c_main{
+    width:1280px;
+    min-height:1129px;
+    margin:0 auto;
+    background:#f7f7f5;
+}
+.c_header{
+    width:100%;
+    height:72px;
+    background:#ffffff;
+    box-shadow:0px 0px 4px 0px rgba(0,0,0,0.12), 0px 4px 4px 0px rgba(0,0,0,0.24);
+    position:relative;
+}
+.c_title{
+    font-family:SourceHanSansCN-Medium;
+    font-size:20px;
+    color:rgba(0,0,0,0.58);
+    letter-spacing:0px;
+    line-height:20px;
+    position:absolute;
+    top:26px;
+    left:32px;
+}
+.c_image{
+    width:50px;
+    height:50px;
+    position:absolute;
+    top:14px;
+    right:184px;
+}
+.c_name{
+    width:102px;
+    height:16px;
+    line-height:16px;
+    font-family:SourceHanSansCN-Regular;
+    font-size:16px;
+    color:rgba(0,0,0,0.58);
+    position:absolute;
+    top:30px;
+    right:66px;
+}
+.c_middle{
+    background:#4f5570;
+    width:100%;
+    height:164px;
+    position:relative;
+}
+.c_middle_image{
+    width:108px;
+    height:108px;
+    position:absolute;
+    top:22px;
+    left:552px;
+    border-radius:100%;
+}
+.c_middle_name,.c_middle_role{
+    font-family:SourceHanSansCN-Regular;
+    font-size:16px;
+    color:#ffffff;
+    line-height:16px;
+    height:16px;
+    width:200px;
+    position:absolute;
+    left:672px;
+}
+.c_middle_name{
+     top:56px;
+}
+.c_middle_role{
+     top:86px;
+}
+.c_bottom{
+    width:820px;
+    min-height:850px;
+    margin-left:233px;
+    margin-top:16px;
+}
+.c_bottom_title{
+    width:96px;
+    height:16px; 
+    font-family:SourceHanSansCN-Medium;
+    font-size:16px;
+    color:rgba(0,0,0,0.58);
+    letter-spacing:0px;
+    line-height:16px;
+}
+.c_bottom_class{
+    background:#ffffff;
+    box-shadow:0px 0px 2px 0px rgba(0,0,0,0.12);
+    border-radius:8px;
+    width:186px;
+    height:186px;
+    margin:16px 16px 0 0;
+    float:left;
+}
+.c_class_setting {
+    width:17px;
+    height:17px;
+    margin-top:11px;
+    margin-left:156px;
+    background-image:url('../Images/classSet.png');
+    cursor:pointer;
+}
+.c_class_image{
+    width:80px;
+    height:80px;
+    margin-top:-6px;
+    margin-left:53px;
+    cursor:pointer;
+}
+.c_class_name{
+    font-family:SourceHanSansCN-Medium;
+    font-size:15px;
+    color:rgba(0,0,0,0.87);
+    letter-spacing:0px;
+    width:89%;
+    text-align:center;
+    margin-top:10px;
+    margin-left:10px;
+    line-height:19px;
+}
+.c_class_name p{
+    cursor:pointer;
+}
+.c_class_count{
+    font-family:SourceHanSansCN-Regular;
+    font-size:12px;
+    color:rgba(0,0,0,0.58);
+    line-height:12px;
+    margin-left:10px;
+    margin-top:-4px;
+    width:89%;
+    text-align:center;
+}
