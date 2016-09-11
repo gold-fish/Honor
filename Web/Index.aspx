@@ -96,6 +96,11 @@
 
             }
         }
+
+        function ReturnHome()
+        {
+            window.location.href = "Course.aspx";
+        }
     </script>
 </head>
 
@@ -106,7 +111,8 @@
         <asp:HiddenField ID="hidDetailType" runat="server" Value="class" />
         <div class="main" id="main">
             <div class="header">
-                <div id="subjectList" style="height: 30px;padding-top:15px;font-size:14px; width: 400px; margin-left:142px;" runat="server"></div>
+                <div style="cursor:pointer;width:192px;height:31px;background-image:url('Content/Images/return.png'); position:absolute;top:7px;left:45px;" onclick="ReturnHome()"></div>
+                <div id="subjectList" style="height: 30px;font-size:14px; width: 400px; position:absolute;left:320px;top:15px;" runat="server"></div>
             </div>
             <div class="content" id="content">
                 <div class="leftContent">

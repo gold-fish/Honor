@@ -175,5 +175,15 @@ namespace Web
                 }
             }
         }
+
+        #region 退出登录
+
+        protected void btnExit_Click(object sender, EventArgs e)
+        {
+            Session["userInfo"] = null;
+            Response.Redirect("Login.aspx");
+        }
+
+        #endregion
     }
 }

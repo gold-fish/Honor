@@ -71,7 +71,7 @@
     <Content Include="Content\Images\addStudent.png" />
     <Content Include="Content\Images\addStudentBtn.png" />
     <Content Include="Content\Images\bgbotoom.png" />
-    <Content Include="Content\Images\bgLogin.png" />
+    <Content Include="Content\Images\bgLogin.jpg" />
     <Content Include="Content\Images\bgOne.png" />
     <Content Include="Content\Images\bgThree.png" />
     <Content Include="Content\Images\bgTwo.png" />
@@ -84,6 +84,7 @@
     <Content Include="Content\Images\enter.png" />
     <Content Include="Content\Images\enterHigh.png" />
     <Content Include="Content\Images\error.png" />
+    <Content Include="Content\Images\exit.png" />
     <Content Include="Content\Images\first.png" />
     <Content Include="Content\Images\fourBg.png" />
     <Content Include="Content\Images\fourScore.png" />
@@ -96,6 +97,7 @@
     <Content Include="Content\Images\person.png" />
     <Content Include="Content\Images\phone.png" />
     <Content Include="Content\Images\register.png" />
+    <Content Include="Content\Images\return.png" />
     <Content Include="Content\Images\roll.png" />
     <Content Include="Content\Images\rollBar.png" />
     <Content Include="Content\Images\second.png" />

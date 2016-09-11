@@ -562,6 +562,11 @@
                 $("#txtCopyContent").val("");
             }
         }
+
+        function ShowExitDiv()
+        {
+            $("#exit_btn").show();
+        }
     </script>
 
 </head>
@@ -573,7 +578,9 @@
                 <div class="c_image">
                     <asp:Image ID="imgSmall" runat="server" Style="width: 100%; height: 100%;" /></div>
                 <div class="c_name">
-                    <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label></div>
+                    <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label>
+                </div>
+                <div class="c_exit" onclick="ShowExitDiv()"></div>
             </div>
             <div class="c_middle">
                 <div class="c_middle_image">
@@ -584,6 +591,9 @@
                     <asp:Label ID="lblSex" runat="server" Text=""></asp:Label>
                 </div>
                 <div class="c_middle_role">教师</div>
+                <div class="exit_btn" id="exit_btn">
+                    <asp:Button ID="btnExit" runat="server" Text="退出登陆" OnClick="btnExit_Click" />
+                </div>
             </div>
             <div class="c_bottom" id="classList" runat="server"></div>
 
