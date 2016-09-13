@@ -35,6 +35,6 @@ $(function () {
 function GetRollDeatailData(objId, typeValue, item) {
 
     if (objId > 0 && item != "") {
-        $.post("Ajax/HonorRollDetails.ashx", { action: item, Id: objId, typeId: typeValue }, function (data) { $("#rightRoll").html(data); });
+        $.post("Ajax/HonorRollDetails.ashx?op=list", { action: item, Id: objId, typeId: typeValue }, function (data) { $("#rightRoll").html(data); });
     }
 }

@@ -19,6 +19,9 @@ namespace Web.Ajax
 
             if(context.Request.QueryString["op"].ToString().Trim()=="list")
             {
+                //查看学生列表之前有可能是先添加了学生,所以让学生分数之类的缓存失效
+                CacheHelper.RemoveAllCache();
+
                 string classID = context.Request.Params["classID"].ToString().Trim();
                 returnStr = GetStudentList(classID, httpHelper);
             }

@@ -363,7 +363,7 @@ namespace Web.Ajax
 
                 if (strJson != null && strJson.Length > 0)
                 {
-                    CacheHelper.SetCache(strKey, strJson, DateTime.Now.AddSeconds(30), TimeSpan.Zero);
+                    CacheHelper.SetCache(strKey, strJson, DateTime.Now.AddSeconds(43200), TimeSpan.Zero);
                 }
             }
         }

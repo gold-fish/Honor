@@ -13,17 +13,12 @@ namespace Web.Ajax
     /// </summary>
     public class HonorRollDetails : IHttpHandler, IRequiresSessionState
     {
-
         /// <summary>
         /// 接口地址
         /// </summary>
         public string ApiUrl
         {
-            get
-            {
-                string strApiUrl = string.Format("{0}/v2/honor/detail/format/json", ConfigurationManager.AppSettings["url"].Trim());
-                return strApiUrl;
-            }
+            get { return string.Format("{0}/v2/honor/detail/format/json", ConfigurationManager.AppSettings["url"].Trim()); }
         }
 
         HttpHelper helper = new HttpHelper();
@@ -31,46 +26,49 @@ namespace Web.Ajax
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "text/plain";
-
-            string strType = context.Request.Params["action"].Trim();//排行类型
             string strResult = string.Empty;
-            int ID = 0;
 
-            int.TryParse(context.Request.Params["Id"], out ID);
-            int itemType = 0;//排行类型(0:全部,1:具体科目)
-            int.TryParse(context.Request.Params["typeId"], out itemType);
-
-            try
+            //获取行为列表
+            if (context.Request.QueryString["op"].ToString().Trim() == "list")
             {
-                if (strType.Length > 0)
-                {
-                    switch (strType)
-                    {
-                        case "class":
-                            strResult = CreateClassHtml(ID, itemType);
-                            break;
-                        case "personal":
-                            strResult = CreatePersonalHtml(ID, itemType);
-                            break;
-                        case "group":
-                            strResult = CreateGroupHtml(ID, itemType);
-                            break;
+                string strType = context.Request.Params["action"].Trim();//排行类型
+                int ID = 0;
 
+                int.TryParse(context.Request.Params["Id"], out ID);
+                int itemType = 0;//排行类型(0:全部,1:具体科目)
+                int.TryParse(context.Request.Params["typeId"], out itemType);
+
+                try
+                {
+                    if (strType.Length > 0)
+                    {
+                        switch (strType)
+                        {
+                            case "class":
+                                strResult = CreateClassHtml(ID, itemType);
+                                break;
+                            case "personal":
+                                strResult = CreatePersonalHtml(ID, itemType);
+                                break;
+                            case "group":
+                                strResult = CreateGroupHtml(ID, itemType);
+                                break;
+                        }
                     }
                 }
-            }
-            catch
-            {
-                strResult = "<div style='width:300px;line-height:100px;color:#ccc;height:100px;text-align:center;'>暂无数据</div>";
+                catch
+                {
+                    strResult = "<div style='width:300px;line-height:100px;color:#ccc;height:100px;text-align:center;'>暂无数据</div>";
+                }
             }
 
             context.Response.Write(strResult);
         }
 
-        #region 生成排行榜详情
+        #region 获取班级/科目排行榜详细信息
 
         /// <summary>
-        /// 获取班级排行榜详细信息
+        /// 获取班级/科目排行榜详细信息
         /// </summary>
         /// <param name="getDataTypeId">班级/科目ID</param>  
         /// <param name="typeID"></param>
@@ -86,7 +84,7 @@ namespace Web.Ajax
 
                 if (strJson.Length > 0)
                 {
-                    CacheHelper.SetCache(strKey, strJson, DateTime.Now.AddSeconds(30), TimeSpan.Zero);
+                    CacheHelper.SetCache(strKey, strJson, DateTime.Now.AddSeconds(43200), TimeSpan.Zero);
                 }
             }
             else
@@ -95,6 +93,10 @@ namespace Web.Ajax
             }
             return CreateHtml(strJson);
         }
+
+        #endregion
+
+        #region 获取个人排行榜详细信息
 
         /// <summary>
         /// 获取个人排行榜详细信息
@@ -113,7 +115,7 @@ namespace Web.Ajax
 
                 if (strJson.Length > 0)
                 {
-                    CacheHelper.SetCache(strKey, strJson, DateTime.Now.AddSeconds(30), TimeSpan.Zero);
+                    CacheHelper.SetCache(strKey, strJson, DateTime.Now.AddSeconds(43200), TimeSpan.Zero);
                 }
             }
             else
@@ -123,6 +125,10 @@ namespace Web.Ajax
 
             return CreateHtml(strJson);
         }
+
+        #endregion
+
+        #region 获取小组排行榜详细信息
 
         /// <summary>
         /// 获取小组排行榜详细信息
@@ -141,7 +147,7 @@ namespace Web.Ajax
 
                 if (strJson.Length > 0)
                 {
-                    CacheHelper.SetCache(strKey, strJson, DateTime.Now.AddSeconds(30), TimeSpan.Zero);
+                    CacheHelper.SetCache(strKey, strJson, DateTime.Now.AddSeconds(43200), TimeSpan.Zero);
                 }
             }
             else
@@ -151,6 +157,10 @@ namespace Web.Ajax
 
             return CreateHtml(strJson);
         }
+
+        #endregion
+
+        #region 生成页面展示信息
 
         /// <summary>
         /// 生成页面展示信息
@@ -222,6 +232,10 @@ namespace Web.Ajax
             return strHtml;
         }
 
+        #endregion
+
+        #region 判断当前图片是否存在
+
         /// <summary>
         /// 判断当前图片是否存在
         /// </summary>
@@ -240,10 +254,7 @@ namespace Web.Ajax
 
         public bool IsReusable
         {
-            get
-            {
-                return false;
-            }
+            get { return false; }
         }
     }
 }
