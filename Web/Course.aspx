@@ -35,7 +35,7 @@
             position: absolute;
             top: 18px;
             left: 20px;
-            width: 290px;
+            width: 325px;
             height: 20px;
             line-height: 20px;
             font-family: SourceHanSansCN-Heavy;
@@ -51,7 +51,7 @@
         .importIcon,.importFatherIcon {
             position: absolute;
             top: 21px;
-            left: 320px;
+            left: 350px;
             width: 10px;
             height: 12px;
             background-image: url('Content/Images/addStudent.png');
@@ -60,7 +60,7 @@
         .rightTitle,.rightFatherTitle {
             position: absolute;
             top: 19px;
-            left: 340px;
+            left: 370px;
             width: 125px;
             height: 20px;
             line-height: 20px;
@@ -72,17 +72,17 @@
         }
         .importFatherIcon {
             top:22px;
-            left: 480px;
+            left: 500px;
         }
         .rightFatherTitle {
             top:20px;
-            left:500px;
+            left:520px;
             width:70px;
         }
 
         .addContent {
             width: 100%;
-            height: 153px;
+            height: 103px;
             background-color: #fff;
             position: relative;
             border-bottom: 1px solid #EAE8E7;
@@ -115,7 +115,7 @@
         }
         .enter {
             position: absolute;
-            top: 105px;
+            top: 54px;
             left: 490px;
             width: 60px;
             height: 22px;
@@ -126,20 +126,8 @@
             background-image:url('Content/Images/enter.png');
             cursor:pointer;
         }
-        .tel {
-            position: absolute;
-            top: 96px;
-            left: 20px;
-            font-family: SourceHanSansCN-Bold;
-            border: 1px solid #ccc;
-            box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.50);
-            border-radius: 4px;
-            width: 544px;
-            height: 37px;
-            line-height: 37px;
-        }
 
-            .userName input, .tel input {
+            .userName input{
                 border-width: 0;
                 margin:2px 0;
                 width: 99.8%;
@@ -151,32 +139,56 @@
 
         .addList {
             width: 100%;
-            height: 260px;
+            height: 310px;
         }
         .contentBg {
             background-color: white;
             width: 100%;
             overflow-y:auto;
-            max-height:258px;
+            max-height:308px;
         }
         .space{
             width: 100%;
             height: 20px;
             clear:both;
         }
+        .addSutdentTitle {
+            margin:0 auto;
+            width:94%;
+            height:39px;
+            border-bottom: 1.5px solid #EAE8E7;
+        }
         .studentTotal {
-            margin: 0 auto;
-            width: 95%;
-            height: 38px;
-            line-height: 38px;
+            width: 150px;
+            height: 37px;
+            line-height: 37px;
             font-family:SourceHanSansCN-Normal;
             font-size:12px;
             color:rgba(0,0,0,0.26);
-            border-bottom: 1.5px solid #EAE8E7;
+            float:left;
         }
             .studentTotal span {
                 color:#00BCF2;
             }
+        .exportIcon {
+            float:left;
+            width:10px;
+            height:12px;
+            margin-top:12px;
+            background-image:url('Content/Images/addStudent.png');
+        }
+        .exportExcel {
+            float:left;
+            color:#4a90e2;
+            width:100px;
+            height:20px;
+            line-height:20px;
+            font-size:14px;
+            margin-top:9px;
+            margin-left:10px;
+            cursor:pointer;
+        }
+
         .studentDetail {
             margin: 0 auto;
             width: 96%;
@@ -198,6 +210,17 @@
             font-family:SourceHanSansCN-Normal;
             font-size:18px;
             color:rgba(0,0,0,0.58);
+        }
+        .detailInvited {
+            float:left;
+            height:60px;
+            line-height:60px;
+            width:110px;
+            margin-left:40px;
+            font-family:SourceHanSansCN-Normal;
+            font-size:16px;
+            color:rgba(0,0,0,0.58);
+            text-align:center;
         }
 
         .closeBtn {
@@ -319,13 +342,13 @@
             background: #f5f5f5;
             box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.12), 0px 4px 4px 0px rgba(0,0,0,0.24);
             border-radius: 8px;
-            width: 585px;
+            width: 610px;
             height: 526px;
             z-index: 99;
             left: 50%; /*FF IE7*/
             top: 50%; /*FF IE7*/
-            margin-left: -292px !important; /*FF IE7 该值为本身宽的一半 */
-            margin-top: -230px !important; /*FF IE7 该值为本身高的一半*/
+            margin-left: -305px !important; /*FF IE7 该值为本身宽的一半 */
+            margin-top: -263px !important; /*FF IE7 该值为本身高的一半*/
             margin-top: 0px;
             position: fixed !important; /*FF IE7*/
             position: absolute; /*IE6*/
@@ -360,13 +383,26 @@
 
         function popExcel(type)
         {
+            $("#hideStudent").val("");
+            $("#addedStudent").html("");
+            $("#txtCopyContent").val("");
+
             $("#action").val(type);
+
+            if (type == "student") {
+                $("#template").show();
+            } else {
+                $("#template").hide();
+            }
+
             $("#popExcel").fadeIn(600);
         }
 
         function closeExcel()
         {
+            $("#hideStudent").val("");
             $("#addedStudent").html("");
+            $("#txtCopyContent").val("");
             $("#popExcel").fadeOut(600);
         }
 
@@ -374,43 +410,60 @@
             var action = $("#action").val();
             var stuList = $("#hideStudent").val();
 
-            if (stuList == "") {
+            if (stuList == "" || stuList=="[]") {
                 alert("请从Excel中粘贴学生列表！");
             }
             else {
                 var create_by = "<%=userID%>";
                 var user_name = "<%=teacherName%>";
                 var class_id = $("#hideClassID").val();
+                var subjectID = $("#hideSubjectID").val();
                 var class_name = $("#hideClassName").val();
-                var url = "<%=postUrl%>" + "/v2/student/createBatchForPc/format/json";
-
+                
                 //判断是添加学生还是邀请家长
                 if (action == "student") {
+                    var url = "<%=postUrl%>" + "/v2/student/createBatchForPc/format/json";
+
                     $.post(url, { class_id: class_id, create_by: create_by, class_name: class_name, user_name: user_name, students: stuList }, function (data) {
                         $("#hideStudent").val("");
                         $("#addedStudent").html("");
                         $("#popExcel").fadeOut(600);
 
-                        $.post("Ajax/StudentList.ashx?op=list", { classID: class_id }, function (myData) {
+                        $.post("Ajax/StudentList.ashx?op=listAndTel", { classID: class_id, subjectID: subjectID, userID: create_by }, function (myData) {
                             $("#studentList").html(myData);
                         });
                     });
                 }
                 else {
+                    var inviteUrl = "<%=postUrl%>" + "/v2/invite/inviteSmsBatch/format/json";
+                    alert(inviteUrl);
+                    alert(stuList);
 
+                    $.post(inviteUrl, { class_id: class_id, create_by: create_by, class_name: class_name, user_name: user_name, students: stuList }, function (data) {
+                        $("#hideStudent").val("");
+                        $("#addedStudent").html("");
+                        $("#popExcel").fadeOut(600);
+
+                        $.post("Ajax/StudentList.ashx?op=listAndTel", { classID: class_id, subjectID: subjectID, userID: create_by }, function (myData) {
+                            $("#studentList").html(myData);
+                        });
+                    });
                 }
             }
         }
 
-        function popDiv(classID, name) {
+        function popDiv(classID, name, subjectID) {
+            var create_by = "<%=userID%>";
             $("#hideClassID").val(classID);
             $("#hideClassName").val(name);
+            $("#hideSubjectID").val(subjectID);
+
             $("#className").html(name);
 
             $("#popDiv").fadeIn(600);
             $("#backgroundDiv").show();
 
-            $.post("Ajax/StudentList.ashx?op=list", { classID: classID }, function (data) {
+            $.post("Ajax/StudentList.ashx?op=listAndTel", { classID: classID, subjectID: subjectID, userID: create_by }, function (data) {
                 $("#studentList").html(data);
             });
         }
@@ -418,7 +471,6 @@
         function closeDivAndGet()
         {
             $("#txtUsername").val("");
-            $("#txtTel").val("");
             $("#addedStudent").html("");
             $("#popExcel").hide();
             $("#popDiv").fadeOut(600);
@@ -430,28 +482,16 @@
             });
         }
 
-        function InputCheck(type) {
-            if (type == "name") {
-                var username = $("#txtUsername").val();
+        function InputCheck() {
+            var username = $("#txtUsername").val();
 
-                if (username == "") {
-                    $("#username").css("border-color", "#cccccc");
-                    $("#enter").css("background-image", "url('Content/Images/enter.png')");
-                }
-                else {
-                    $("#username").css("border-color", "#00C3F7");
-                    $("#enter").css("background-image", "url('Content/Images/enterHigh.png')");
-                }
+            if (username == "") {
+                $("#username").css("border-color", "#cccccc");
+                $("#enter").css("background-image", "url('Content/Images/enter.png')");
             }
             else {
-                var tel = $("#txtTel").val();
-
-                if (tel == "") {
-                    $("#tel").css("border-color", "#cccccc");
-                }
-                else {
-                    $("#tel").css("border-color", "#00C3F7");
-                }
+                $("#username").css("border-color", "#00C3F7");
+                $("#enter").css("background-image", "url('Content/Images/enterHigh.png')");
             }
         }
 
@@ -463,11 +503,11 @@
                 alert("请输入学生姓名！");
             }
             else {
-                var tel = $("#txtTel").val();
                 var create_by = "<%=userID%>";
                 var user_name = "<%=teacherName%>";
                 var class_id = $("#hideClassID").val();
                 var class_name = $("#hideClassName").val();
+                var subjectID = $("#hideSubjectID").val();
 
                 //随机一个图像
                 var iconStr = "<%=iconStr%>";
@@ -484,19 +524,12 @@
                 
                 var students = "[{\"icon_class\":\"" + icon + "\",\"name_class\":\"" + stuName + "\"}]";
 
-                if (tel!="")
-                {
-                    students = "[{\"icon_class\":\"" + icon + "\",\"name_class\":\"" + stuName + "\",\"telephone\":\"" + tel + "\"}]";
-                }
-
                 $.post(url, { class_id: class_id, create_by: create_by, class_name: class_name, user_name: user_name, students: students}, function (data) {
                     $("#txtUsername").val("");
-                    $("#txtTel").val("");
                     $("#username").css("border-color", "#cccccc");
-                    $("#tel").css("border-color", "#cccccc");
                     $("#enter").css("background-image", "url('Content/Images/enter.png')");
 
-                    $.post("Ajax/StudentList.ashx?op=list", { classID: class_id }, function (myData) {
+                    $.post("Ajax/StudentList.ashx?op=listAndTel", { classID: class_id, subjectID: subjectID, userID: create_by }, function (myData) {
                         $("#studentList").html(myData);
                     });
                 });
@@ -504,85 +537,139 @@
         }
 
         function copyExcel() {
+            //判断是添加学生还是邀请家长
+            var action = $("#action").val();
             var copyContent = $("#txtCopyContent").val().replace(/^\s+|\s+$/g, "");
 
             if (copyContent != "") {
                 var str = copyContent.replace(/(\r\n|\r|\n)/g, '*');
-                
+
                 var stuArr = str.split('*');
                 var len = stuArr.length;
-                var allInput = "";
-                //学生列表
-                var studentList = "";
 
-                //随机一个图像
-                var iconStr = "<%=iconStr%>";
-                var iconArr = iconStr.split(",");
-                var iconLen = iconArr.length;
+                //添加学生
+                if (action == "student") {
+                    var allInput = "";
+                    //学生列表
+                    var studentList = "";
 
-                for (var i = 0; i < len; i++) {
-                    if (stuArr[i] != "") {
-                        var row = stuArr[i].replace(/^\s+|\s+$/g, "");
+                    //随机一个图像
+                    var iconStr = "<%=iconStr%>";
+                    var iconArr = iconStr.split(",");
+                    var iconLen = iconArr.length;
 
-                        var rowArr = row.split('|');
-                        var rowLen = rowArr.length;
+                    for (var i = 0; i < len; i++) {
+                        if (stuArr[i] != "") {
+                            var row = stuArr[i].replace(/^\s+|\s+$/g, "");
 
-                        var txtInput = "";
-                        var oneStu = "";
-                        var tel = "";
-                        var stuName = "";
-                        var icon = "";
+                            var rowArr = row.split('|');
+                            var rowLen = rowArr.length;
 
-                        for (var k = 0; k < rowLen; k++) {
-                            if (k == 0) {
-                                stuName = rowArr[k].replace(/^\s+|\s+$/g, "");
-                                txtInput = txtInput + stuName;
+                            var txtInput = "";
+                            var oneStu = "";
+                            var tel = "";
+                            var stuName = "";
+                            var icon = "";
 
-                                var index = Math.floor(Math.random() * iconLen);
+                            for (var k = 0; k < rowLen; k++) {
+                                if (k == 0) {
+                                    stuName = rowArr[k].replace(/^\s+|\s+$/g, "");
+                                    txtInput = txtInput + stuName;
 
-                                if (index == iconLen) {
-                                    index = iconLen - 1;
+                                    var index = Math.floor(Math.random() * iconLen);
+
+                                    if (index == iconLen) {
+                                        index = iconLen - 1;
+                                    }
+
+                                    icon = iconArr[index];
                                 }
+                                else {
+                                    if (rowArr[k] != "") {
+                                        tel = rowArr[k].replace(/^\s+|\s+$/g, "");;
+                                        txtInput = txtInput + " , " + tel;
+                                        break;
+                                    }
+                                }
+                            }
 
-                                icon = iconArr[index];
+                            if (tel == "") {
+                                oneStu = "{\"icon_class\":\"" + icon + "\",\"name_class\":\"" + stuName + "\"}";
                             }
                             else {
-                                if (rowArr[k] != "") {
-                                    tel = rowArr[k].replace(/^\s+|\s+$/g, "");;
-                                    txtInput = txtInput + " , " + tel;
-                                    break;
-                                }
+                                oneStu = "{\"icon_class\":\"" + icon + "\",\"name_class\":\"" + stuName + "\",\"telephone\":\"" + tel + "\"}";
+                            }
+
+                            studentList = studentList + oneStu + ",";
+
+                            var oneInput = "<input type=\"text\" value=\"" + txtInput + "\" readonly=\"true\"/>";
+                            allInput = allInput + oneInput;
+                        }
+                    }
+
+                    //去掉最后的","
+                    studentList = studentList.substring(0, studentList.length - 1);
+                    studentList = "[" + studentList + "]";
+
+                    $("#hideStudent").val(studentList);
+                    $("#addedStudent").html(allInput);
+                    $("#txtCopyContent").html("");
+                    $("#txtCopyContent").val("");
+                }
+                    //邀请家长
+                else {
+                    var allInvite = "";
+                    
+                    //邀请列表
+                    var inviteList = "";
+
+                    for (var i = 0; i < len; i++) {
+                        if (stuArr[i] != "") {
+                            var row = stuArr[i].replace(/^\s+|\s+$/g, "");
+
+                            var rowArr = row.split('|');
+                            var rowLen = rowArr.length;
+
+                            if (rowLen == 3 && rowArr[2].replace(/^\s+|\s+$/g, "") != "") {
+                                var stuID = rowArr[0].replace(/^\s+|\s+$/g, "");
+                                var stuName = rowArr[1].replace(/^\s+|\s+$/g, "");
+                                var tel = rowArr[2].replace(/^\s+|\s+$/g, "");
+
+                                var oneInvite = "{\"student_id\":\"" + stuID + "\",\"student_name\":\"" + stuName + "\",\"telephone\":\"" + tel + "\"}";
+                                var oneInput = "<input type=\"text\" value=\"" + stuName + ", " + tel + "\" readonly=\"true\"/>";
+
+                                inviteList = inviteList + oneInvite + ",";
+                                allInvite = allInvite + oneInput;
                             }
                         }
-
-                        if (tel == "") {
-                            oneStu = "{\"icon_class\":\"" + icon + "\",\"name_class\":\"" + stuName + "\"}";
-                        }
-                        else {
-                            oneStu = "{\"icon_class\":\"" + icon + "\",\"name_class\":\"" + stuName + "\",\"telephone\":\"" + tel + "\"}";
-                        }
-
-                        studentList = studentList + oneStu + ",";
-
-                        var oneInput = "<input type=\"text\" value=\"" + txtInput + "\" readonly=\"true\"/>";
-                        allInput = allInput + oneInput;
                     }
-                }
 
-                //去掉最后的","
-                studentList = studentList.substring(0, studentList.length - 1);
-                studentList = "[" + studentList + "]";
-                
-                $("#hideStudent").val(studentList);
-                $("#addedStudent").html(allInput);
-                $("#txtCopyContent").html("");
-                $("#txtCopyContent").val("");
+                    //去掉最后的","
+                    inviteList = inviteList.substring(0, inviteList.length - 1);
+                    inviteList = "[" + inviteList + "]";
+
+                    $("#hideStudent").val(inviteList);
+                    $("#addedStudent").html(allInvite);
+                    $("#txtCopyContent").html("");
+                    $("#txtCopyContent").val("");
+                }
             }
         }
 
         function ShowExitDiv()
         {
             $("#exit_btn").show();
+        }
+
+        function Export() {
+            var create_by = "<%=userID%>";           
+            var class_id = $("#hideClassID").val();
+            var subjectID = $("#hideSubjectID").val();
+
+            //防止url缓存
+            var ms = Math.random();
+
+            window.location.href = "Ajax/ExportExcel.ashx?op=excel" + "&ms=" + ms + "&userID=" + create_by + "&classID=" + class_id + "&subjectID=" + subjectID;
         }
     </script>
 
@@ -625,10 +712,7 @@
                 <div class="addContent">
                     <div class="addTitle">通过姓名添加</div>
                     <div class="userName" id="username">
-                        <input type="text" id="txtUsername" placeholder='请输入姓名，如"小明"' onkeyup="InputCheck('name')"/>
-                    </div>
-                    <div class="tel" id="tel">
-                        <input type="text" id="txtTel" placeholder="请输入学生家长手机号" onkeyup="InputCheck('tel')"/>
+                        <input type="text" id="txtUsername" placeholder='请输入姓名，如"小明"' onkeyup="InputCheck()"/>
                     </div>
                     <div class="enter" id="enter" onclick="Enter()">确认&nbsp;</div>
                 </div>
@@ -646,7 +730,7 @@
             <div id="popExcel" style="display: none;">
                 <div class="excelBg">
                     <div class="excelImport">粘贴Excel内容：<textarea rows="3" onkeyup ="copyExcel()" id="txtCopyContent"></textarea></div>
-                    <div class="template"><a href="Utils/student.xlsx">下载模板</a></div>
+                    <div class="template" id="template"><a href="Utils/student.xlsx">下载模板</a></div>
                     <div class="addedStudent" id="addedStudent"></div>
                     <div class="excelReturn" onclick="closeExcel()">取消</div>
                     <div class="excelSave" onclick="closeExcelAndGet()">保存</div>
@@ -657,6 +741,7 @@
             <input type="hidden" id="hideClassID" value=""/>
             <input type="hidden" id="hideClassName" value="" />
             <input type="hidden" id="action" value="" />
+            <input type="hidden" id="hideSubjectID" value="" />
         </div>
     </form>
 </body>

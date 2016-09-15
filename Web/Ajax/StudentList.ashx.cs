@@ -28,42 +28,64 @@ namespace Web.Ajax
 
             #endregion
 
-            #region 添加学生(此方法暂未使用)
+            #region 获取学生列表(带邀请记录)
 
-            else if (context.Request.QueryString["op"].ToString().Trim() == "add")
-            {
-                string class_id = context.Request.Params["class_id"].ToString().Trim();
-                string create_by = context.Request.Params["create_by"].ToString().Trim();
-                string class_name = context.Request.Params["class_name"].ToString().Trim();
-                string user_name = context.Request.Params["user_name"].ToString().Trim();
-                
-                string icon_class = context.Request.Params["icon_class"].ToString().Trim();
-                string name_class = context.Request.Params["name_class"].ToString().Trim();
-                string telephone = context.Request.Params["telephone"].ToString().Trim();
+            else if (context.Request.QueryString["op"].ToString().Trim() == "listAndTel") {
+                string classID = context.Request.Params["classID"].ToString().Trim();
+                string subjectID = context.Request.Params["subjectID"].ToString().Trim();
+                string userID = context.Request.Params["userID"].ToString().Trim();
 
-                StringBuilder postStr = new StringBuilder();
-                postStr.Append("{");
-                postStr.AppendFormat("\"class_id\":\"{0}\",", class_id);
-                postStr.AppendFormat("\"create_by\":\"{0}\",", create_by);
-                postStr.AppendFormat("\"class_name\":\"{0}\",", class_name);
-                postStr.AppendFormat("\"user_name\":\"{0}\",", user_name);
-                
-                if (telephone==string.Empty)
+                string url = ConfigurationManager.AppSettings["url"].Trim() + string.Format("/v2/student/list/format/json?class_subject_id={0}&class_id={1}&create_by={2}", subjectID, classID, userID);
+                string result = httpHelper.HttpGet(url, string.Empty);
+
+                JObject json = JObject.Parse(result);
+                int count = Convert.ToInt32(json["num_row"].ToString());
+                StringBuilder sb = new StringBuilder();
+
+                //有学生
+                if (count > 0)
                 {
-                    postStr.AppendFormat("\"students\":[{{\"icon_class\":\"{0}\",\"name_class\":\"{1}\"}}]", icon_class, name_class);
+                    JArray stuArr = json["data"]["student_list"] as JArray;
+
+                    if (stuArr != null && stuArr.Count > 0)
+                    {
+                        sb.Append("<div class=\"addSutdentTitle\">");
+                        sb.AppendFormat("<div class=\"studentTotal\">已添加 <span>{0}</span> 名学生</div>", stuArr.Count);
+                        sb.Append("<div class=\"exportIcon\"></div>");
+                        sb.Append("<div class=\"exportExcel\" onclick=\"Export()\">导出未邀请学生</div>");
+                        sb.Append("</div>");
+                        
+                        int len = stuArr.Count;
+
+                        for (int i = len - 1; i >= 0; i--)
+                        {
+                            JObject item = stuArr[i] as JObject;
+
+                            string icon = ConfigurationManager.AppSettings["url"].Trim() + item["icon_class"].ToString();
+                            JArray smsArr = stuArr[i]["sms"] as JArray;
+
+                            if (!HttpHelper.IsImageExists(icon))
+                            {
+                                icon = ConfigurationManager.AppSettings["url"].Trim() + "/uploads/avatar/default.png";
+                            }
+
+                            sb.Append("<div class=\"studentDetail\">");
+                            sb.AppendFormat("<div class=\"detailImage\"><img src=\"{0}\" style=\"width:96%;height:96%;\"/></div>", icon);
+                            sb.AppendFormat("<div class=\"detailName\">{0}</div>", item["name_class"].ToString());
+
+                            if (smsArr != null && smsArr.Count > 0)
+                            {
+                                sb.Append("<div class=\"detailInvited\">（已邀请）</div>");
+                            }
+                            
+                            sb.Append("</div>");
+                        }
+
+                        sb.Append("<div class=\"space\"></div>");
+                    }
                 }
-                else
-                {
-                    postStr.AppendFormat("\"students\":[{{\"icon_class\":\"{0}\",\"name_class\":\"{1}\",\"telephone\":\"{2}\"}}]", icon_class, name_class, telephone);
-                }
 
-                postStr.Append("}");
-
-                string postUrl = string.Format("{0}/v2/student/createBatchForPc/format/json", ConfigurationManager.AppSettings["url"]);
-                httpHelper.HttpPost(postUrl, postStr.ToString());
-
-                //返回添加完学生后的列表
-                returnStr = GetStudentList(class_id, httpHelper);
+                returnStr = sb.ToString();
             }
 
             #endregion

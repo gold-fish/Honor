@@ -60,7 +60,7 @@ namespace Web.Ajax
                             string courseID = SecurityHelper.Encrypt(classID);
 
                             sb.Append("<div class=\"c_bottom_class\">");
-                            sb.AppendFormat("<div class=\"c_class_setting\" title=\"点击添加学生\" onclick=\"popDiv('{0}','{1}')\"></div><div class=\"c_class_image\">", classID, className);
+                            sb.AppendFormat("<div class=\"c_class_setting\" title=\"点击添加学生\" onclick=\"popDiv('{0}','{1}','{2}')\"></div><div class=\"c_class_image\">", classID, className, subject["class_subject_id"].ToString().Trim());
                             sb.Append(string.Format("<img src='{0}' style='width:100%;height:100%;' onclick=\"showRoll('{1}','{2}','{3}')\" /></div>", subjectImg, urlUserID, courseID, subjectID));
                             sb.Append(string.Format("<div class=\"c_class_name\"><p onclick=\"showRoll('{0}','{1}','{2}')\">", urlUserID, courseID, subjectID));
                             sb.Append(string.Format("{0}-{1}", className, subjectName));
@@ -74,7 +74,7 @@ namespace Web.Ajax
                         string courseID = SecurityHelper.Encrypt(classID);
 
                         sb.Append("<div class=\"c_bottom_class\">");
-                        sb.AppendFormat("<div class=\"c_class_setting\" title=\"点击添加学生\" onclick=\"popDiv('{0}','{1}')\"></div><div class=\"c_class_image\">", classID, className);
+                        sb.AppendFormat("<div class=\"c_class_setting\" title=\"点击添加学生\" onclick=\"popDiv('{0}','{1}','{2}')\"></div><div class=\"c_class_image\">", classID, className, 0);
                         sb.Append(string.Format("<img src='{0}' style='width:100%;height:100%;' onclick=\"showRoll('{1}','{2}','{3}')\" /></div>", classIcon, urlUserID, courseID, 0));
                         sb.Append(string.Format("<div class=\"c_class_name\"><p onclick=\"showRoll('{0}','{1}','{2}')\">", urlUserID, courseID, 0));
                         sb.Append(string.Format("{0}", className));
