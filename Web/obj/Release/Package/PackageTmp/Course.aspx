@@ -35,7 +35,7 @@
             position: absolute;
             top: 18px;
             left: 20px;
-            width: 350px;
+            width: 290px;
             height: 20px;
             line-height: 20px;
             font-family: SourceHanSansCN-Heavy;
@@ -48,19 +48,19 @@
                 color: #00BCF2;
             }
 
-        .importIcon {
+        .importIcon,.importFatherIcon {
             position: absolute;
             top: 21px;
-            left: 420px;
+            left: 320px;
             width: 10px;
             height: 12px;
             background-image: url('Content/Images/addStudent.png');
         }
 
-        .rightTitle {
+        .rightTitle,.rightFatherTitle {
             position: absolute;
             top: 19px;
-            left: 440px;
+            left: 340px;
             width: 125px;
             height: 20px;
             line-height: 20px;
@@ -69,6 +69,15 @@
             color: #4a90e2;
             text-align: left;
             cursor:pointer;
+        }
+        .importFatherIcon {
+            top:22px;
+            left: 480px;
+        }
+        .rightFatherTitle {
+            top:20px;
+            left:500px;
+            width:70px;
         }
 
         .addContent {
@@ -349,8 +358,9 @@
             }
         }
 
-        function popExcel()
+        function popExcel(type)
         {
+            $("#action").val(type);
             $("#popExcel").fadeIn(600);
         }
 
@@ -361,6 +371,7 @@
         }
 
         function closeExcelAndGet() {
+            var action = $("#action").val();
             var stuList = $("#hideStudent").val();
 
             if (stuList == "") {
@@ -373,15 +384,21 @@
                 var class_name = $("#hideClassName").val();
                 var url = "<%=postUrl%>" + "/v2/student/createBatchForPc/format/json";
 
-                $.post(url, { class_id: class_id, create_by: create_by, class_name: class_name, user_name: user_name, students: stuList }, function (data) {
-                    $("#hideStudent").val("");
-                    $("#addedStudent").html("");
-                    $("#popExcel").fadeOut(600);
+                //判断是添加学生还是邀请家长
+                if (action == "student") {
+                    $.post(url, { class_id: class_id, create_by: create_by, class_name: class_name, user_name: user_name, students: stuList }, function (data) {
+                        $("#hideStudent").val("");
+                        $("#addedStudent").html("");
+                        $("#popExcel").fadeOut(600);
 
-                    $.post("Ajax/StudentList.ashx?op=list", { classID: class_id }, function (myData) {
-                        $("#studentList").html(myData);
+                        $.post("Ajax/StudentList.ashx?op=list", { classID: class_id }, function (myData) {
+                            $("#studentList").html(myData);
+                        });
                     });
-                });
+                }
+                else {
+
+                }
             }
         }
 
@@ -562,6 +579,11 @@
                 $("#txtCopyContent").val("");
             }
         }
+
+        function ShowExitDiv()
+        {
+            $("#exit_btn").show();
+        }
     </script>
 
 </head>
@@ -573,7 +595,9 @@
                 <div class="c_image">
                     <asp:Image ID="imgSmall" runat="server" Style="width: 100%; height: 100%;" /></div>
                 <div class="c_name">
-                    <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label></div>
+                    <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label>
+                </div>
+                <div class="c_exit" onclick="ShowExitDiv()"></div>
             </div>
             <div class="c_middle">
                 <div class="c_middle_image">
@@ -584,6 +608,9 @@
                     <asp:Label ID="lblSex" runat="server" Text=""></asp:Label>
                 </div>
                 <div class="c_middle_role">教师</div>
+                <div class="exit_btn" id="exit_btn">
+                    <asp:Button ID="btnExit" runat="server" Text="退出登陆" OnClick="btnExit_Click" />
+                </div>
             </div>
             <div class="c_bottom" id="classList" runat="server"></div>
 
@@ -591,7 +618,9 @@
                 <div class="popTitle">
                     <div class="leftTitle">为 <span id="className">三年二班</span> 添加学生</div>
                     <div class="importIcon"></div>
-                    <div class="rightTitle" onclick="popExcel()">导入学生名单添加</div>
+                    <div class="rightTitle" onclick="popExcel('student')">导入学生名单添加</div>
+                    <div class="importFatherIcon"></div>
+                    <div class="rightFatherTitle" onclick="popExcel('parent')">邀请家长</div>
                 </div>
                 <div class="addContent">
                     <div class="addTitle">通过姓名添加</div>
@@ -627,6 +656,7 @@
             <input type="hidden" id="hideStudent" value="" />
             <input type="hidden" id="hideClassID" value=""/>
             <input type="hidden" id="hideClassName" value="" />
+            <input type="hidden" id="action" value="" />
         </div>
     </form>
 </body>

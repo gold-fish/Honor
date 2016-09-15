@@ -12,6 +12,7 @@
     width:100%;
     height:50px;
     border-bottom:2px solid #C6C6C6;
+    position:relative;
 }
 
 #mySubject {
@@ -56,6 +57,7 @@ color:#c3c3c3;
     width:960px;
     height:49px;
     background-color:#52CCFD;
+    z-index:999999;
 }
 .slide{
     position:relative;
@@ -585,5 +587,41 @@ color:#c3c3c3;
     font-family:SourceHanSansCN-Bold;
     font-size:18px;
     color:#fef8ba;
+}
+.rightRoll {
+    max-height:754px;overflow-y:auto;margin-top:20px;
+}
+/*不显示分组时的样式*/
+.nogroup {
+    width:100%;
+    height:252px;
+    background-image:url('../Images/bgbotoom.png');
+    position:relative;
+}
+.nocontent {
+    width:100%;
+    height:864px;
+}
+.nomain {
+    width:1280px;
+    height:995px;
+    margin:0 auto;
+    background-color:white;
+}
+.norightBottom {
+    width:100%;
+    height:754px;
+}
+.norightRoll {
+   max-height:694px;overflow-y:auto;margin-top:20px; 
+}
+.noslide{
+    position:relative;
+    margin:16px 20px;
+    width:200px;
+    height:5px;
+    background-color:#FFF; 
+    float:left;
+    display:none;
 }
 

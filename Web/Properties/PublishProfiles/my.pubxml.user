@@ -10,16 +10,16 @@
   </PropertyGroup>
   <ItemGroup>
     <File Include="Ajax/CourseList.ashx">
-      <publishTime>09/01/2016 15:20:31</publishTime>
+      <publishTime>09/13/2016 22:59:16</publishTime>
     </File>
     <File Include="Ajax/HonorRoll.ashx">
-      <publishTime>08/23/2016 18:02:44</publishTime>
+      <publishTime>09/13/2016 22:59:16</publishTime>
     </File>
     <File Include="Ajax/HonorRollDetails.ashx">
-      <publishTime>08/24/2016 18:06:46</publishTime>
+      <publishTime>09/13/2016 22:59:16</publishTime>
     </File>
     <File Include="Ajax/StudentList.ashx">
-      <publishTime>09/01/2016 09:19:42</publishTime>
+      <publishTime>09/13/2016 22:59:16</publishTime>
     </File>
     <File Include="bin/AspNet.ScriptManager.jQuery.dll">
       <publishTime>08/20/2016 17:18:15</publishTime>
@@ -58,7 +58,7 @@
       <publishTime>07/08/2013 15:15:08</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>08/22/2016 12:48:45</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="bin/System.Net.Http.dll">
       <publishTime>07/09/2013 11:04:48</publishTime>
@@ -67,7 +67,7 @@
       <publishTime>08/20/2016 17:18:13</publishTime>
     </File>
     <File Include="bin/Web.dll">
-      <publishTime>09/09/2016 23:03:37</publishTime>
+      <publishTime>09/13/2016 23:48:06</publishTime>
     </File>
     <File Include="bin/zh-Hans/EntityFramework.resources.dll">
       <publishTime>08/20/2016 17:18:24</publishTime>
@@ -85,193 +85,208 @@
       <publishTime>08/20/2016 17:18:24</publishTime>
     </File>
     <File Include="Content/Css/index.css">
-      <publishTime>09/09/2016 22:52:31</publishTime>
+      <publishTime>09/13/2016 22:59:16</publishTime>
     </File>
     <File Include="Content/Css/login.css">
-      <publishTime>09/08/2016 21:31:22</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/addClass.png">
-      <publishTime>08/31/2016 09:14:06</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/addStudent.png">
-      <publishTime>08/31/2016 10:30:38</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/addStudentBtn.png">
-      <publishTime>08/31/2016 17:09:07</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/bgbotoom.png">
-      <publishTime>08/20/2016 18:54:29</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
+    </File>
+    <File Include="Content/Images/bgLogin.jpg">
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/bgLogin.png">
       <publishTime>08/21/2016 13:52:21</publishTime>
     </File>
     <File Include="Content/Images/bgOne.png">
-      <publishTime>08/20/2016 23:24:22</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/bgThree.png">
-      <publishTime>08/20/2016 23:24:22</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/bgTwo.png">
-      <publishTime>08/20/2016 23:24:22</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/checkbox.png">
-      <publishTime>08/22/2016 09:47:01</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/class.png">
-      <publishTime>08/20/2016 22:09:37</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/classIcon.png">
-      <publishTime>08/21/2016 16:44:54</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/classSet.png">
-      <publishTime>08/21/2016 16:48:39</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/courseTop.png">
-      <publishTime>08/21/2016 15:56:11</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/day.png">
-      <publishTime>08/24/2016 18:49:35</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/enter.png">
-      <publishTime>08/31/2016 19:11:19</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/enterHigh.png">
-      <publishTime>08/31/2016 19:11:19</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/error.png">
-      <publishTime>08/23/2016 10:34:30</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
+    </File>
+    <File Include="Content/Images/exit.png">
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/first.png">
-      <publishTime>08/21/2016 11:21:57</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/fourBg.png">
-      <publishTime>08/25/2016 12:28:53</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/fourScore.png">
-      <publishTime>08/25/2016 12:11:51</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/fourSort.png">
-      <publishTime>08/25/2016 12:11:51</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/loginImage.png">
-      <publishTime>08/21/2016 14:11:41</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/loginPwd.png">
-      <publishTime>08/21/2016 14:39:48</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/loginTop.png">
-      <publishTime>08/21/2016 14:09:51</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/loginUserName.png">
-      <publishTime>08/21/2016 14:39:48</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/logo.png">
-      <publishTime>08/21/2016 13:54:35</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/person.png">
-      <publishTime>08/21/2016 00:10:53</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/phone.png">
-      <publishTime>08/21/2016 13:59:18</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/register.png">
-      <publishTime>08/21/2016 15:10:08</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
+    </File>
+    <File Include="Content/Images/return.png">
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/roll.png">
-      <publishTime>08/20/2016 21:12:07</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/rollBar.png">
-      <publishTime>08/20/2016 21:14:12</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/second.png">
-      <publishTime>08/21/2016 11:21:57</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/setIcon.png">
-      <publishTime>08/23/2016 19:02:26</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/setting.png">
-      <publishTime>08/20/2016 21:24:38</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/slide.png">
-      <publishTime>08/20/2016 15:51:16</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/sortNormal.png">
-      <publishTime>09/07/2016 22:11:57</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/sortPrev.png">
-      <publishTime>08/27/2016 11:37:43</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/teacher.png">
-      <publishTime>08/21/2016 16:12:08</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/three.png">
-      <publishTime>08/21/2016 11:21:57</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/top1.png">
-      <publishTime>08/24/2016 19:41:53</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/top2.png">
-      <publishTime>08/24/2016 19:41:53</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/top3.png">
-      <publishTime>08/24/2016 19:41:53</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/topBg.png">
-      <publishTime>08/25/2016 09:25:28</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/topPerson.png">
-      <publishTime>09/05/2016 22:16:12</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Content/Images/topScore.png">
-      <publishTime>08/24/2016 19:41:53</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Course.aspx">
-      <publishTime>09/08/2016 21:00:46</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>08/20/2016 17:17:46</publishTime>
+      <publishTime>09/13/2016 22:59:16</publishTime>
     </File>
     <File Include="Index.aspx">
-      <publishTime>09/08/2016 22:57:43</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Login.aspx">
-      <publishTime>08/27/2016 16:02:42</publishTime>
+      <publishTime>09/13/2016 22:59:16</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>08/20/2016 17:18:24</publishTime>
     </File>
     <File Include="Scripts/HonorRoll.js">
-      <publishTime>08/27/2016 16:32:50</publishTime>
+      <publishTime>09/13/2016 22:59:16</publishTime>
     </File>
     <File Include="Scripts/HonorRollDetails.js">
-      <publishTime>09/08/2016 22:47:32</publishTime>
+      <publishTime>09/13/2016 23:46:34</publishTime>
     </File>
     <File Include="Scripts/jquery-1.8.2.js">
-      <publishTime>08/20/2016 17:17:59</publishTime>
+      <publishTime>09/13/2016 22:59:16</publishTime>
     </File>
     <File Include="Scripts/jquery-1.8.2.min.js">
-      <publishTime>08/20/2016 17:17:59</publishTime>
+      <publishTime>09/13/2016 22:59:16</publishTime>
     </File>
     <File Include="Scripts/jquery-ui-1.8.24.js">
-      <publishTime>08/20/2016 17:18:12</publishTime>
+      <publishTime>09/13/2016 22:59:16</publishTime>
     </File>
     <File Include="Scripts/jquery-ui-1.8.24.min.js">
-      <publishTime>08/20/2016 17:18:12</publishTime>
+      <publishTime>09/13/2016 22:59:16</publishTime>
     </File>
     <File Include="Scripts/modernizr-2.6.2.js">
-      <publishTime>08/20/2016 17:18:13</publishTime>
+      <publishTime>09/13/2016 22:59:16</publishTime>
     </File>
     <File Include="test.html">
       <publishTime>08/20/2016 17:50:21</publishTime>
     </File>
     <File Include="Utils/Newtonsoft.Json.dll">
-      <publishTime>08/22/2016 12:48:45</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Utils/student.xlsx">
-      <publishTime>09/06/2016 21:33:08</publishTime>
+      <publishTime>09/13/2016 22:58:23</publishTime>
+    </File>
+    <File Include="Wav/active.wav">
+      <publishTime>09/13/2016 22:58:23</publishTime>
+    </File>
+    <File Include="Wav/inactive.wav">
+      <publishTime>09/13/2016 22:58:23</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/03/2016 01:00:39</publishTime>
+      <publishTime>09/13/2016 23:48:07</publishTime>
     </File>
   </ItemGroup>
 </Project>

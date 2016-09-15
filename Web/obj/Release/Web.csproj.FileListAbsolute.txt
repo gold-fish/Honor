@@ -16,3 +16,12 @@ C:\Users\wxt\Desktop\HonorRoll\Web\bin\Microsoft.Web.Infrastructure.xml
 C:\Users\wxt\Desktop\HonorRoll\Web\obj\Release\Web.csprojResolveAssemblyReference.cache
 C:\Users\wxt\Desktop\HonorRoll\Web\obj\Release\Web.dll
 C:\Users\wxt\Desktop\HonorRoll\Web\obj\Release\Web.pdb
+C:\Users\wxt\Desktop\Honor\Web\bin\Web.dll.config
+C:\Users\wxt\Desktop\Honor\Web\bin\Web.dll
+C:\Users\wxt\Desktop\Honor\Web\bin\Web.pdb
+C:\Users\wxt\Desktop\Honor\Web\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\wxt\Desktop\Honor\Web\bin\Newtonsoft.Json.dll
+C:\Users\wxt\Desktop\Honor\Web\bin\Microsoft.Web.Infrastructure.xml
+C:\Users\wxt\Desktop\Honor\Web\obj\Release\Web.csprojResolveAssemblyReference.cache
+C:\Users\wxt\Desktop\Honor\Web\obj\Release\Web.dll
+C:\Users\wxt\Desktop\Honor\Web\obj\Release\Web.pdb
