@@ -15,6 +15,9 @@ namespace Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.Form.DefaultButton = "btnEnter";
+
+            //如果没有登录,则直接退出到登录页
             if (Session["userInfo"] == null)
             {
                 Response.Redirect("Login.aspx");

@@ -120,13 +120,19 @@
             width: 60px;
             height: 22px;
             line-height:22px;
-            font-size:11px;
-            text-align:center;
-            color:white;
             background-image:url('Content/Images/enter.png');
             cursor:pointer;
         }
-
+            .enter input {
+                border-width:0;
+                background-color:#D8D8D8;
+                cursor:pointer;
+                font-size:11px;
+                text-align:right;
+                width:35px;
+                margin-left:5px;
+                color:white;
+            }
             .userName input{
                 border-width: 0;
                 margin:2px 0;
@@ -486,17 +492,19 @@
             if (username == "") {
                 $("#username").css("border-color", "#cccccc");
                 $("#enter").css("background-image", "url('Content/Images/enter.png')");
+                $("#enter input").css("background-color", "#D8D8D8");
             }
             else {
                 $("#username").css("border-color", "#00C3F7");
                 $("#enter").css("background-image", "url('Content/Images/enterHigh.png')");
+                $("#enter input").css("background-color", "#00BCF2");
             }
         }
 
-        //添加学生
+        //单个添加学生
         function Enter() {
-            var stuName = $("#txtUsername").val();
-                
+            var stuName = $("#txtUsername").val().replace(/^\s+|\s+$/g, "");
+
             if (stuName == "") {
                 alert("请输入学生姓名！");
             }
@@ -526,12 +534,15 @@
                     $("#txtUsername").val("");
                     $("#username").css("border-color", "#cccccc");
                     $("#enter").css("background-image", "url('Content/Images/enter.png')");
+                    $("#enter input").css("background-color", "#D8D8D8");
 
                     $.post("Ajax/StudentList.ashx?op=listAndTel", { classID: class_id, subjectID: subjectID, userID: create_by }, function (myData) {
                         $("#studentList").html(myData);
                     });
-                });
+                });               
             }
+
+            return false;
         }
 
         function copyExcel() {
@@ -694,7 +705,7 @@
                 </div>
                 <div class="c_middle_role">教师</div>
                 <div class="exit_btn" id="exit_btn">
-                    <asp:Button ID="btnExit" runat="server" Text="退出登陆" OnClick="btnExit_Click" />
+                    <asp:Button ID="btnExit" runat="server" Text="退出登陆" OnClick="btnExit_Click" UseSubmitBehavior="false" />
                 </div>
             </div>
             <div class="c_bottom" id="classList" runat="server"></div>
@@ -712,7 +723,7 @@
                     <div class="userName" id="username">
                         <input type="text" id="txtUsername" placeholder='请输入姓名，如"小明"' onkeyup="InputCheck()"/>
                     </div>
-                    <div class="enter" id="enter" onclick="Enter()">确认&nbsp;</div>
+                    <div class="enter" id="enter"><asp:Button ID="btnEnter" runat="server" Text="确认" OnClientClick="return Enter()"/></div>
                 </div>
                 <div class="addList">
                     <div class="contentBg" id="studentList"></div>
