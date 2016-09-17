@@ -33,8 +33,20 @@ $(function () {
 })
 
 function GetRollDeatailData(objId, typeValue, item) {
-
     if (objId > 0 && item != "") {
-        $.post("Ajax/HonorRollDetails.ashx?op=list", { action: item, Id: objId, typeId: typeValue }, function (data) { $("#rightRoll").html(data); });
+        $.post("Ajax/HonorRollDetails.ashx?op=list", { action: item, Id: objId, typeId: typeValue },
+            function (data) {
+                var arr = data.split(',');
+                var tableStr = arr[0];
+                var maxID = arr[1];
+
+                $("#rightRoll").html(tableStr);
+
+                var prevMaxID = parseInt($("#hidMaxID").val());
+
+                if (maxID != "0" && parseInt(maxID) > prevMaxID) {
+                    $("#hidMaxID").val(maxID);
+                }
+            });
     }
 }

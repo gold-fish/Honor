@@ -61,6 +61,55 @@ namespace Web.Ajax
                     strResult = "<div style='width:300px;line-height:100px;color:#ccc;height:100px;text-align:center;'>暂无数据</div>";
                 }
             }
+            //获取是否有新行为
+            else if (context.Request.QueryString["op"].ToString().Trim() == "getMax")
+            {
+                var classOrSubjectID = context.Request.Params["classOrSubjectID"].ToString().Trim();
+                var classType = context.Request.Params["classType"].ToString().Trim();
+                var maxID = context.Request.Params["maxID"].ToString().Trim();
+                var type = context.Request.Params["type"].ToString().Trim();
+
+                string url = string.Format("{0}?class_id={1}&class_report_id={2}&type={3}", ApiUrl, classOrSubjectID, maxID, type);
+
+                if (classType == "1") {
+                    url = string.Format("{0}?class_subject_id={1}&class_report_id={2}&type={3}", ApiUrl, classOrSubjectID, maxID, type);
+                }
+
+                string jsonStr = helper.HttpGet(url, string.Empty);
+
+                JObject jobj = JObject.Parse(jsonStr);
+                int retrunMaxID = 0;
+
+                StringBuilder strbld = new StringBuilder("<div style=\"display:none;\">");
+
+                if (jobj != null && jobj["error_code"].ToString().Equals("0"))
+                {
+                    JArray objArray = jobj["data"] as JArray;
+
+                    if (objArray != null && objArray.Count > 0)
+                    {
+                        JObject maxObject = objArray[0] as JObject;
+                        retrunMaxID = Convert.ToInt32(maxObject["class_report_id"].ToString().Trim());
+
+                        for (int i = 0; i < objArray.Count; i++)
+                        {
+                            string actionStr = objArray[i]["behavior_type"].ToString().Trim(); //1：积极行为，2：消极行为
+
+                            if (actionStr == "1")
+                            {
+                                strbld.Append("<embed src=\"Wav/active.wav\"/>");
+                            }
+                            else {
+                                strbld.Append("<embed src=\"Wav/inactive.wav\"/>");
+                            }
+                        }
+                    }
+                }
+
+                strbld.Append("</div>");
+
+                strResult = strbld.ToString() + "," + retrunMaxID.ToString();
+            }
 
             context.Response.Write(strResult);
         }
@@ -91,6 +140,7 @@ namespace Web.Ajax
             {
                 strJson = obj.ToString();
             }
+
             return CreateHtml(strJson);
         }
 
@@ -170,6 +220,8 @@ namespace Web.Ajax
         private string CreateHtml(string strJson)
         {
             string strHtml = string.Empty;
+            int maxID = 0;
+
             try
             {
                 JObject jobj = JObject.Parse(strJson);
@@ -183,14 +235,33 @@ namespace Web.Ajax
                         StringBuilder strbld = new StringBuilder();
                         strbld.Append("<table class=\"rightBottomTable\">");
 
+                        JObject maxObject = objArray[0] as JObject;
+                        maxID = Convert.ToInt32(maxObject["class_report_id"].ToString().Trim());
+                        
                         for (int i = 0; i < objArray.Count; i++)
                         {
+                            string stuName = "--";
+                            string stuImage = string.Empty;
+                            
                             JObject studentObj = objArray[i]["student"] as JObject;
-                            string stuName = studentObj["name_class"].ToString().Trim();
-                            string stuImage = studentObj["icon_class"].ToString().Trim();
 
+                            if (studentObj["name_class"] != null)
+                            {
+                                stuName = studentObj["name_class"].ToString().Trim();
+                            }
+
+                            if (studentObj["icon_class"] != null)
+                            {
+                                stuImage = studentObj["icon_class"].ToString().Trim();
+                            }
+                            
                             JObject userObj = objArray[i]["user"] as JObject;
-                            string teacherName = userObj["username"].ToString().Trim();
+
+                            string teacherName = "--";
+                            
+                            if (userObj["username"] != null) {
+                                teacherName = userObj["username"].ToString().Trim();
+                            }
 
                             string behaviorStr = objArray[i]["class_behavior_name"].ToString().Trim();
                             string actionStr = objArray[i]["behavior_type"].ToString().Trim(); //1：获得，2：扣除
@@ -224,12 +295,12 @@ namespace Web.Ajax
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 return string.Empty;
             }
 
-            return strHtml;
+            return strHtml + "," + maxID.ToString();
         }
 
         #endregion
@@ -243,10 +314,11 @@ namespace Web.Ajax
         /// <returns></returns>
         private string ImgIsExists(string imgUrl)
         {
-            if (HttpHelper.IsImageExists(ConfigurationManager.AppSettings["url"].Trim() + imgUrl))
+            if (imgUrl != string.Empty && HttpHelper.IsImageExists(ConfigurationManager.AppSettings["url"].Trim() + imgUrl))
             {
                 return ConfigurationManager.AppSettings["url"].Trim() + imgUrl;
             }
+
             return "Content/Images/person.png";
         }
 

@@ -12,8 +12,9 @@
 
     <script type="text/javascript">
         $(function () {
-            ShowData();
+            //ShowData();
             ShowDiffStyle();
+
             $("#rghm").removeClass("rightpPrsonal").removeClass("rightGroup").addClass("rightMiddle");
         });
 
@@ -21,11 +22,23 @@
             var classOrSubjectID = $("#hidClassId").val();
             var classType = $("#hidType").val();
             var detailType = $("#hidDetailType").val();
+            var maxID = $("#hidMaxID").val();
+            var type = 3;//3表示小组和个人的行为同时返回
 
-            loadHonorRollData();
+            alert(classOrSubjectID);
+            alert(classType);
+            //防止url缓存
+            var ms = Math.random();
+
+            //定时去获取有没有最新的扣、加分行为
+            $.post("Ajax/HonorRollDetails.ashx?op=getMax&ms="+ms, { classOrSubjectID: classOrSubjectID, classType: classType, maxID: maxID, type: type }, function (data) {
+                alert(data);
+            });
+
+            //loadHonorRollData();
 
             //显示右侧扣分榜
-            GetRollDeatailData(classOrSubjectID, classType, detailType);
+            //GetRollDeatailData(classOrSubjectID, classType, detailType);
             setTimeout("ShowData()", 3000);
         }
 
@@ -109,6 +122,8 @@
         <asp:HiddenField ID="hidClassId" runat="server" Value="" />
         <asp:HiddenField ID="hidType" runat="server" Value="" />
         <asp:HiddenField ID="hidDetailType" runat="server" Value="class" />
+        <input type="hidden" id="hidMaxID" value="0" />
+
         <div class="main" id="main">
             <div class="header">
                 <div style="cursor:pointer;width:192px;height:31px;background-image:url('Content/Images/return.png'); position:absolute;top:7px;left:45px;" onclick="ReturnHome()"></div>
