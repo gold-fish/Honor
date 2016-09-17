@@ -25,3 +25,8 @@ C:\Users\wxt\Desktop\Honor\Web\bin\Microsoft.Web.Infrastructure.xml
 C:\Users\wxt\Desktop\Honor\Web\obj\Release\Web.csprojResolveAssemblyReference.cache
 C:\Users\wxt\Desktop\Honor\Web\obj\Release\Web.dll
 C:\Users\wxt\Desktop\Honor\Web\obj\Release\Web.pdb
+C:\Users\wxt\Desktop\Honor\Web\bin\ICSharpCode.SharpZipLib.dll
+C:\Users\wxt\Desktop\Honor\Web\bin\NPOI.dll
+C:\Users\wxt\Desktop\Honor\Web\bin\NPOI.OOXML.dll
+C:\Users\wxt\Desktop\Honor\Web\bin\NPOI.OpenXml4Net.dll
+C:\Users\wxt\Desktop\Honor\Web\bin\NPOI.OpenXmlFormats.dll

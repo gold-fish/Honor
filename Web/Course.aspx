@@ -436,8 +436,6 @@
                 }
                 else {
                     var inviteUrl = "<%=postUrl%>" + "/v2/invite/inviteSmsBatch/format/json";
-                    alert(inviteUrl);
-                    alert(stuList);
 
                     $.post(inviteUrl, { class_id: class_id, create_by: create_by, class_name: class_name, user_name: user_name, students: stuList }, function (data) {
                         $("#hideStudent").val("");
