@@ -40,7 +40,9 @@ function GetRollDeatailData(objId, typeValue, item) {
                 var tableStr = arr[0];
                 var maxID = arr[1];
 
-                $("#rightRoll").html(tableStr);
+                if (tableStr != "") {
+                    $("#rightRoll").html(tableStr);
+                }
 
                 var prevMaxID = parseInt($("#hidMaxID").val());
 

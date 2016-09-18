@@ -12,7 +12,7 @@
 
     <script type="text/javascript">
         $(function () {
-            //ShowData();
+            ShowData();
             ShowDiffStyle();
 
             $("#rghm").removeClass("rightpPrsonal").removeClass("rightGroup").addClass("rightMiddle");
@@ -24,21 +24,32 @@
             var detailType = $("#hidDetailType").val();
             var maxID = $("#hidMaxID").val();
             var type = 3;//3表示小组和个人的行为同时返回
+           
+            if (!(classOrSubjectID == "" || classType == "")) {
+                //防止url缓存
+                var ms = Math.random();
 
-            alert(classOrSubjectID);
-            alert(classType);
-            //防止url缓存
-            var ms = Math.random();
+                //定时去获取有没有最新的扣、加分行为
+                $.post("Ajax/HonorRollDetails.ashx?op=getMax&ms=" + ms, { classOrSubjectID: classOrSubjectID, classType: classType, maxID: maxID, type: type }, function (data) {
+                    var arr = data.split(',');
+                    var audio = arr[0];
+                    var maxID = arr[1];
+                    
+                    $("#audio").html(audio);
 
-            //定时去获取有没有最新的扣、加分行为
-            $.post("Ajax/HonorRollDetails.ashx?op=getMax&ms="+ms, { classOrSubjectID: classOrSubjectID, classType: classType, maxID: maxID, type: type }, function (data) {
-                alert(data);
-            });
+                    var prevMaxID = parseInt($("#hidMaxID").val());
 
-            //loadHonorRollData();
+                    if (maxID != "0" && parseInt(maxID) > prevMaxID) {
+                        $("#hidMaxID").val(maxID);
+                        
+                        loadHonorRollData();
 
-            //显示右侧扣分榜
-            //GetRollDeatailData(classOrSubjectID, classType, detailType);
+                        //显示右侧扣分榜
+                        GetRollDeatailData(classOrSubjectID, classType, detailType);
+                    }
+                });
+            }
+
             setTimeout("ShowData()", 3000);
         }
 
@@ -185,6 +196,8 @@
                     <div id="btnTeam"></div>
                 </div>
             </div>
+            
+            <div id="audio" style="display:none;"></div>
         </div>
     </form>
 </body>

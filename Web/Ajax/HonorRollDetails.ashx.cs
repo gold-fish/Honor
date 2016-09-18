@@ -80,7 +80,7 @@ namespace Web.Ajax
                 JObject jobj = JObject.Parse(jsonStr);
                 int retrunMaxID = 0;
 
-                StringBuilder strbld = new StringBuilder("<div style=\"display:none;\">");
+                StringBuilder strbld = new StringBuilder();
 
                 if (jobj != null && jobj["error_code"].ToString().Equals("0"))
                 {
@@ -91,22 +91,27 @@ namespace Web.Ajax
                         JObject maxObject = objArray[0] as JObject;
                         retrunMaxID = Convert.ToInt32(maxObject["class_report_id"].ToString().Trim());
 
-                        for (int i = 0; i < objArray.Count; i++)
+                        //如果有新的行为产生,则让所有的缓存失效
+                        if (retrunMaxID > Convert.ToInt32(maxID))
                         {
-                            string actionStr = objArray[i]["behavior_type"].ToString().Trim(); //1：积极行为，2：消极行为
+                            CacheHelper.RemoveAllCache();
 
-                            if (actionStr == "1")
+                            for (int i = 0; i < objArray.Count; i++)
                             {
-                                strbld.Append("<embed src=\"Wav/active.wav\"/>");
-                            }
-                            else {
-                                strbld.Append("<embed src=\"Wav/inactive.wav\"/>");
+                                string actionStr = objArray[i]["behavior_type"].ToString().Trim(); //1：积极行为，2：消极行为
+
+                                if (actionStr == "1")
+                                {
+                                    strbld.Append("<embed src=\"Wav/active.wav\"/>");
+                                }
+                                else
+                                {
+                                    strbld.Append("<embed src=\"Wav/inactive.wav\"/>");
+                                }
                             }
                         }
                     }
                 }
-
-                strbld.Append("</div>");
 
                 strResult = strbld.ToString() + "," + retrunMaxID.ToString();
             }
