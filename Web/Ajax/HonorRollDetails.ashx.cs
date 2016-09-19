@@ -96,17 +96,33 @@ namespace Web.Ajax
                         {
                             CacheHelper.RemoveAllCache();
 
-                            for (int i = 0; i < objArray.Count; i++)
+                            for (int i = 0; i < objArray.Count-1; i++)
                             {
                                 string actionStr = objArray[i]["behavior_type"].ToString().Trim(); //1：积极行为，2：消极行为
+                                string browser = context.Request.Browser.Type.ToLower();
 
-                                if (actionStr == "1")
+                                //Chrome浏览器
+                                if (browser.IndexOf("chrome") > -1 || browser.IndexOf("firefox") > -1)
                                 {
-                                    strbld.Append("<embed src=\"Wav/active.wav\"/>");
+                                    if (actionStr == "1")
+                                    {
+                                        strbld.Append("<audio src=\"Wav/active.wav\" autoplay=\"autoplay\"></audio>");
+                                    }
+                                    else
+                                    {
+                                        strbld.Append("<audio src=\"Wav/inactive.wav\" autoplay=\"autoplay\"></audio>");
+                                    }
                                 }
                                 else
                                 {
-                                    strbld.Append("<embed src=\"Wav/inactive.wav\"/>");
+                                    if (actionStr == "1")
+                                    {
+                                        strbld.Append("<embed src=\"Wav/active.wav\" loop=1/>");
+                                    }
+                                    else
+                                    {
+                                        strbld.Append("<embed src=\"Wav/inactive.wav\" loop=1/>");
+                                    }
                                 }
                             }
                         }
