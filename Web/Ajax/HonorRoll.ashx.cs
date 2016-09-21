@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Configuration;
+using System.IO;
+using System.Net;
 using System.Text;
 using System.Web;
 using Web.Utils;
@@ -113,13 +115,31 @@ namespace Web.Ajax
                                     strbld.Append("<div class=\"topThree\">");
                                 }
 
+                                int topWidth = 0;
+                                int topHeight = 0;
+                                string topIconUrl = string.Empty;
+                                string topImgTag = string.Empty;
+
                                 switch (j)
                                 {
                                     case 0:
                                         stgbld.Append("<div class=\"top1\">");
                                         stgbld.AppendFormat("<div class=\"topScore\">{0}</div>", studentAarray[0]["score"].ToString());
                                         stgbld.Append("<div class=\"topImage\">");
-                                        stgbld.AppendFormat("<img style=\"width:64px; height:66px;margin: 2px 0px 0 12px\" src='{0}'/>", ImgIsExists(studentAarray[0]["student"]["icon_class"].ToString()));
+
+                                        topIconUrl = ImgIsExists(Url + studentAarray[0]["student"]["icon_class"].ToString().Trim(), out topWidth, out topHeight);
+                                        
+                                        //根据图片的大小,适当调整位置
+                                        if (topWidth >= 115 && topWidth <= 125 && topHeight >= 115 && topHeight <= 125)
+                                        {
+                                            topImgTag = string.Format("<img style=\"width:64px; height:66px; margin: 2px 0px 0 12px\" src='{0}'/>", topIconUrl);
+                                        }
+                                        else
+                                        {
+                                            topImgTag = string.Format("<img style=\"width:40px; height:52px; margin: 11px 0px 0 24px\" src='{0}'/>", topIconUrl);
+                                        }
+                                        
+                                        stgbld.Append(topImgTag);
                                         stgbld.Append("</div>");
                                         stgbld.Append("<div class=\"topSort1\"></div>");
                                         stgbld.AppendFormat("<div class=\"topName\">{0}</div>", studentAarray[0]["student"]["name_class"].ToString());
@@ -129,7 +149,21 @@ namespace Web.Ajax
                                         strbld.Append("<div class=\"top2\">");
                                         strbld.AppendFormat("<div class=\"topScore\">{0}</div>", studentAarray[1]["score"].ToString());
                                         strbld.Append("<div class=\"topImage\">");
-                                        strbld.AppendFormat("<img style=\"width:64px; height:66px;margin: 2px 0px 0 12px\" src='{0}'/>", ImgIsExists(studentAarray[1]["student"]["icon_class"].ToString()));
+                                       
+                                        topIconUrl = ImgIsExists(Url + studentAarray[1]["student"]["icon_class"].ToString().Trim(), out topWidth, out topHeight);
+                                        
+                                        //根据图片的大小,适当调整位置
+                                        if (topWidth >= 115 && topWidth <= 125 && topHeight >= 115 && topHeight <= 125)
+                                        {
+                                            topImgTag = string.Format("<img style=\"width:64px; height:66px; margin: 2px 0px 0 12px\" src='{0}'/>", topIconUrl);
+                                        }
+                                        else
+                                        {
+                                            topImgTag = string.Format("<img style=\"width:40px; height:52px; margin: 11px 0px 0 24px\" src='{0}'/>", topIconUrl);
+                                        }
+
+                                        strbld.Append(topImgTag);
+
                                         strbld.Append("</div>");
                                         strbld.Append("<div class=\"topSort2\"></div>");
                                         strbld.AppendFormat("<div class=\"topName\">{0}</div>", studentAarray[1]["student"]["name_class"].ToString());
@@ -140,7 +174,21 @@ namespace Web.Ajax
                                         strbld.Append("<div class=\"top3\">");
                                         strbld.AppendFormat("<div class=\"topScore\">{0}</div>", studentAarray[2]["score"].ToString());
                                         strbld.Append("<div class=\"topImage\">");
-                                        strbld.AppendFormat("<img style=\"width:64px; height:66px;margin: 2px 0px 0 12px\" src='{0}'/>", ImgIsExists(studentAarray[2]["student"]["icon_class"].ToString()));
+                                        
+                                        topIconUrl = ImgIsExists(Url + studentAarray[2]["student"]["icon_class"].ToString().Trim(), out topWidth, out topHeight);
+                                        
+                                        //根据图片的大小,适当调整位置
+                                        if (topWidth >= 115 && topWidth <= 125 && topHeight >= 115 && topHeight <= 125)
+                                        {
+                                            topImgTag = string.Format("<img style=\"width:64px; height:66px; margin: 2px 0px 0 12px\" src='{0}'/>", topIconUrl);
+                                        }
+                                        else
+                                        {
+                                            topImgTag = string.Format("<img style=\"width:40px; height:52px; margin: 11px 0px 0 24px\" src='{0}'/>", topIconUrl);
+                                        }
+
+                                        strbld.Append(topImgTag);
+
                                         strbld.Append("</div>");
                                         strbld.Append("<div class=\"topSort3\"></div>");
                                         strbld.AppendFormat("<div class=\"topName\">{0}</div>", studentAarray[2]["student"]["name_class"].ToString());
@@ -168,7 +216,22 @@ namespace Web.Ajax
                                     strbld.Append("<div class=\"top4\">");
                                     strbld.AppendFormat("<div class=\"top4Score\">{0}</div>", studentAarray[j]["score"].ToString());
                                     strbld.Append("<div class=\"top4Image\">");
-                                    strbld.AppendFormat("<img style=\"width:64px; height:66px; margin: 0px 7px 0 6px\" src='{0}'/>", ImgIsExists(tempIcon));
+
+                                    int width = 0;
+                                    int height = 0;
+                                    string iconUrl = ImgIsExists(Url + tempIcon, out width, out height);
+                                    string imgTag = string.Empty;
+
+                                    //根据图片的大小,适当调整位置
+                                    if (width >= 115 && width <= 125 && height >= 115 && height <= 125)
+                                    {
+                                        imgTag = string.Format("<img style=\"width:64px; height:66px; margin: 0px 7px 0 6px\" src='{0}'/>", iconUrl);
+                                    }
+                                    else {
+                                        imgTag = string.Format("<img style=\"width:40px; height:52px; margin: 11px 0px 0 18px\" src='{0}'/>", iconUrl);
+                                    }
+
+                                    strbld.Append(imgTag);
                                     strbld.Append("</div>");
                                     strbld.AppendFormat("<div class=\"top4Sort\">{0}</div>", j + 1);
                                     strbld.AppendFormat("<div class=\"top4Name\">{0}</div>", tempStuName);
@@ -368,6 +431,68 @@ namespace Web.Ajax
             }
         }
 
+        #region 判断图片是否存在并返回图片大小
+
+        public string ImgIsExists(string url, out int width, out int height)
+        {
+            WebResponse response = null;
+            Stream stream = null;
+
+            bool result = false;
+
+            width = 0;
+            height = 0;
+
+            try
+            {
+                Uri uri = new Uri(url);
+
+                WebRequest req = WebRequest.Create(uri);
+                response = req.GetResponse();
+
+                result = response == null ? false : true;
+
+                if (response != null)
+                {
+                    stream = response.GetResponseStream();
+                    System.Drawing.Image image;
+                    image = System.Drawing.Image.FromStream(stream);
+
+                    width = image.Width;
+                    height = image.Height;
+                }
+            }
+            catch
+            {
+                result = false;
+            }
+            finally
+            {
+                if (response != null)
+                {
+                    response.Close();
+                }
+                if (stream != null)
+                {
+                    stream.Close();
+                }
+            }
+
+            if (result && url != Url)
+            {
+                return url;
+            }
+            else
+            {
+                width = 121;
+                height = 121;
+
+                return "Content/Images/topPerson.png";
+            }
+        }
+
+        #endregion
+
         /// <summary>
         /// 判断当前图片是否存在
         /// </summary>
@@ -375,7 +500,7 @@ namespace Web.Ajax
         /// <returns></returns>
         private string ImgIsExists(string imgUrl)
         {
-            if (HttpHelper.IsImageExists(Url + imgUrl))
+            if (imgUrl != string.Empty && HttpHelper.IsImageExists(Url + imgUrl))
             {
                 return Url + imgUrl;
             }

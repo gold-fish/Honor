@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Configuration;
+using System.IO;
+using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.SessionState;
@@ -296,7 +298,23 @@ namespace Web.Ajax
 
                             strbld.Append("<tr>");
                             strbld.Append("<td rowspan=\"2\" class=\"image\">");
-                            strbld.AppendFormat("<img src=\"{0}\" style='width:55px;height:50px;'/></td>", ImgIsExists(stuImage));
+
+                            int width = 0;
+                            int height = 0;
+                            string imgurl = ImgIsExists(ConfigurationManager.AppSettings["url"].Trim() + stuImage, out width, out height);
+                            string imgTag = string.Empty;
+
+                            //根据图片的大小,适当调整位置
+                            if (width >= 115 && width <= 125 && height >= 115 && height <= 125)
+                            {
+                                imgTag = string.Format("<img src=\"{0}\" style='width:55px;height:50px;position:absolute;left:0;top:0;'/></td>", imgurl);
+                            }
+                            else
+                            {
+                                imgTag = string.Format("<img src=\"{0}\" style='width:40px;height:48px;position:absolute;left:5px;top:5px; '/></td>", imgurl);
+                            }
+
+                            strbld.Append(imgTag);
                             strbld.AppendFormat("<td colspan=\"2\" class=\"recordTitle\">{0}，{1}，{2}</td>", stuName, behaviorStr, resultScore);
                             strbld.Append("</tr>");
 
@@ -326,21 +344,64 @@ namespace Web.Ajax
 
         #endregion
 
-        #region 判断当前图片是否存在
+        #region 判断图片是否存在并返回图片大小
 
-        /// <summary>
-        /// 判断当前图片是否存在
-        /// </summary>
-        /// <param name="imgUrl">图片地址</param>
-        /// <returns></returns>
-        private string ImgIsExists(string imgUrl)
+        public string ImgIsExists(string url, out int width, out int height)
         {
-            if (imgUrl != string.Empty && HttpHelper.IsImageExists(ConfigurationManager.AppSettings["url"].Trim() + imgUrl))
+            WebResponse response = null;
+            Stream stream = null;
+
+            bool result = false;
+
+            width = 0;
+            height = 0;
+
+            try
             {
-                return ConfigurationManager.AppSettings["url"].Trim() + imgUrl;
+                Uri uri = new Uri(url);
+
+                WebRequest req = WebRequest.Create(uri);
+                response = req.GetResponse();
+
+                result = response == null ? false : true;
+
+                if (response != null)
+                {
+                    stream = response.GetResponseStream();
+                    System.Drawing.Image image;
+                    image = System.Drawing.Image.FromStream(stream);
+
+                    width = image.Width;
+                    height = image.Height;
+                }
+            }
+            catch
+            {
+                result = false;
+            }
+            finally
+            {
+                if (response != null)
+                {
+                    response.Close();
+                }
+                if (stream != null)
+                {
+                    stream.Close();
+                }
             }
 
-            return "Content/Images/person.png";
+            if (result && url != ConfigurationManager.AppSettings["url"].Trim())
+            {
+                return url;
+            }
+            else
+            {
+                width = 121;
+                height = 121;
+
+                return "Content/Images/person.png";
+            }
         }
 
         #endregion

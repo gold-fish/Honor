@@ -390,6 +390,7 @@ color:#c3c3c3;
 }
 .image{
     width:56px;
+    position:relative;
 }
 .recordTitle{
     font-family:SourceHanSansCN-Regular;
