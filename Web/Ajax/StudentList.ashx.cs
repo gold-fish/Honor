@@ -64,13 +64,24 @@ namespace Web.Ajax
                             string icon = ConfigurationManager.AppSettings["url"].Trim() + item["icon_class"].ToString();
                             JArray smsArr = stuArr[i]["sms"] as JArray;
 
-                            if (!HttpHelper.IsImageExists(icon))
+                            int width = 0;
+                            int height = 0;
+
+                            string imgSrc = HttpHelper.ImgIsExists(icon, out width, out height);
+                            string imgTag = string.Empty;
+
+                            //根据图片的大小,适当调整位置
+                            if (width >= 115 && width <= 125 && height >= 115 && height <= 125)
                             {
-                                icon = ConfigurationManager.AppSettings["url"].Trim() + "/uploads/avatar/default.png";
+                                imgTag = string.Format("<img style=\"width:45px; height:50px;position:absolute;top:0;left:0;\" src='{0}'/>", imgSrc);
+                            }
+                            else
+                            {
+                                imgTag = string.Format("<img style=\"width:35px; height:45px;position:absolute;top:4px;left:3px; \" src='{0}'/>", imgSrc);
                             }
 
                             sb.Append("<div class=\"studentDetail\">");
-                            sb.AppendFormat("<div class=\"detailImage\"><img src=\"{0}\" style=\"width:96%;height:96%;\"/></div>", icon);
+                            sb.AppendFormat("<div class=\"detailImage\">{0}</div>", imgTag);
                             sb.AppendFormat("<div class=\"detailName\">{0}</div>", item["name_class"].ToString());
 
                             if (smsArr != null && smsArr.Count > 0)
@@ -126,7 +137,7 @@ namespace Web.Ajax
                         }
 
                         sb.Append("<div class=\"studentDetail\">");
-                        sb.AppendFormat("<div class=\"detailImage\"><img src=\"{0}\" style=\"width:96%;height:96%;\"/></div>", icon);
+                        sb.AppendFormat("<div class=\"detailImage\"><img src=\"{0}\" style=\"width:45px;height:50px;\"/></div>", icon);
                         sb.AppendFormat("<div class=\"detailName\">{0}</div>", item["name_class"].ToString());
                         sb.Append("</div>");
                     }

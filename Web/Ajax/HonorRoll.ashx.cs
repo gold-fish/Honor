@@ -20,7 +20,7 @@ namespace Web.Ajax
         {
             get
             {
-                string strUrl = "http://test.keji110.com";
+                string strUrl = "http://api.keji110.com";
 
                 if (!string.IsNullOrWhiteSpace(ConfigurationManager.AppSettings["url"].Trim()))
                 {
@@ -95,10 +95,27 @@ namespace Web.Ajax
                 if (jObj["error_code"].ToString().Trim().Equals("0"))
                 {
                     JArray studentAarray = jObj["data"]["personal"] as JArray;
+                    
+                    //未删除的学生列表
+                    JArray unDeletedArr = new JArray();
 
                     if (studentAarray != null && studentAarray.Count > 0)
                     {
-                        int studentCount = studentAarray.Count > (num + 10) ? (num + 10) : studentAarray.Count;
+                        for (int k = 0; k < studentAarray.Count; k++)
+                        {
+                            JObject tempStu = studentAarray[k] as JObject;
+                            JObject tempSub = tempStu["student"] as JObject;
+
+                            if (tempSub != null && tempSub["status"] != null && tempSub["status"].ToString().Trim() == "1")
+                            {
+                                unDeletedArr.Add(tempStu);
+                            }
+                        }
+                    }
+
+                    if (unDeletedArr != null && unDeletedArr.Count > 0)
+                    {
+                        int studentCount = unDeletedArr.Count > (num + 10) ? (num + 10) : unDeletedArr.Count;
 
                         #region
 
@@ -124,10 +141,10 @@ namespace Web.Ajax
                                 {
                                     case 0:
                                         stgbld.Append("<div class=\"top1\">");
-                                        stgbld.AppendFormat("<div class=\"topScore\">{0}</div>", studentAarray[0]["score"].ToString());
+                                        stgbld.AppendFormat("<div class=\"topScore\">{0}</div>", unDeletedArr[0]["score"].ToString());
                                         stgbld.Append("<div class=\"topImage\">");
 
-                                        topIconUrl = ImgIsExists(Url + studentAarray[0]["student"]["icon_class"].ToString().Trim(), out topWidth, out topHeight);
+                                        topIconUrl = ImgIsExists(Url + unDeletedArr[0]["student"]["icon_class"].ToString().Trim(), out topWidth, out topHeight);
                                         
                                         //根据图片的大小,适当调整位置
                                         if (topWidth >= 115 && topWidth <= 125 && topHeight >= 115 && topHeight <= 125)
@@ -142,15 +159,15 @@ namespace Web.Ajax
                                         stgbld.Append(topImgTag);
                                         stgbld.Append("</div>");
                                         stgbld.Append("<div class=\"topSort1\"></div>");
-                                        stgbld.AppendFormat("<div class=\"topName\">{0}</div>", studentAarray[0]["student"]["name_class"].ToString());
+                                        stgbld.AppendFormat("<div class=\"topName\">{0}</div>", TextHelper.CutString(unDeletedArr[0]["student"]["name_class"].ToString(),6,string.Empty));
                                         stgbld.Append("</div>");
                                         break;
                                     case 1:
                                         strbld.Append("<div class=\"top2\">");
-                                        strbld.AppendFormat("<div class=\"topScore\">{0}</div>", studentAarray[1]["score"].ToString());
+                                        strbld.AppendFormat("<div class=\"topScore\">{0}</div>", unDeletedArr[1]["score"].ToString());
                                         strbld.Append("<div class=\"topImage\">");
-                                       
-                                        topIconUrl = ImgIsExists(Url + studentAarray[1]["student"]["icon_class"].ToString().Trim(), out topWidth, out topHeight);
+
+                                        topIconUrl = ImgIsExists(Url + unDeletedArr[1]["student"]["icon_class"].ToString().Trim(), out topWidth, out topHeight);
                                         
                                         //根据图片的大小,适当调整位置
                                         if (topWidth >= 115 && topWidth <= 125 && topHeight >= 115 && topHeight <= 125)
@@ -166,16 +183,16 @@ namespace Web.Ajax
 
                                         strbld.Append("</div>");
                                         strbld.Append("<div class=\"topSort2\"></div>");
-                                        strbld.AppendFormat("<div class=\"topName\">{0}</div>", studentAarray[1]["student"]["name_class"].ToString());
+                                        strbld.AppendFormat("<div class=\"topName\">{0}</div>", TextHelper.CutString(unDeletedArr[1]["student"]["name_class"].ToString(),6,string.Empty));
                                         strbld.Append("</div>");
                                         strbld.Append(stgbld.ToString());
                                         break;
                                     case 2:
                                         strbld.Append("<div class=\"top3\">");
-                                        strbld.AppendFormat("<div class=\"topScore\">{0}</div>", studentAarray[2]["score"].ToString());
+                                        strbld.AppendFormat("<div class=\"topScore\">{0}</div>", unDeletedArr[2]["score"].ToString());
                                         strbld.Append("<div class=\"topImage\">");
-                                        
-                                        topIconUrl = ImgIsExists(Url + studentAarray[2]["student"]["icon_class"].ToString().Trim(), out topWidth, out topHeight);
+
+                                        topIconUrl = ImgIsExists(Url + unDeletedArr[2]["student"]["icon_class"].ToString().Trim(), out topWidth, out topHeight);
                                         
                                         //根据图片的大小,适当调整位置
                                         if (topWidth >= 115 && topWidth <= 125 && topHeight >= 115 && topHeight <= 125)
@@ -191,7 +208,7 @@ namespace Web.Ajax
 
                                         strbld.Append("</div>");
                                         strbld.Append("<div class=\"topSort3\"></div>");
-                                        strbld.AppendFormat("<div class=\"topName\">{0}</div>", studentAarray[2]["student"]["name_class"].ToString());
+                                        strbld.AppendFormat("<div class=\"topName\">{0}</div>", TextHelper.CutString(unDeletedArr[2]["student"]["name_class"].ToString(),6,string.Empty));
                                         strbld.Append("</div>");
                                         break;
                                 }
@@ -208,13 +225,13 @@ namespace Web.Ajax
                                     strbld.Append("</div><div class=\"afterThree\">");
                                 }
 
-                                string tempStuName = studentAarray[j]["student"]["name_class"].ToString();
-                                string tempIcon = studentAarray[j]["student"]["icon_class"].ToString();
+                                string tempStuName = unDeletedArr[j]["student"]["name_class"].ToString();
+                                string tempIcon = unDeletedArr[j]["student"]["icon_class"].ToString();
 
                                 if (!(tempStuName == "/" || tempIcon == "/"))
                                 {
                                     strbld.Append("<div class=\"top4\">");
-                                    strbld.AppendFormat("<div class=\"top4Score\">{0}</div>", studentAarray[j]["score"].ToString());
+                                    strbld.AppendFormat("<div class=\"top4Score\">{0}</div>", unDeletedArr[j]["score"].ToString());
                                     strbld.Append("<div class=\"top4Image\">");
 
                                     int width = 0;
@@ -234,7 +251,7 @@ namespace Web.Ajax
                                     strbld.Append(imgTag);
                                     strbld.Append("</div>");
                                     strbld.AppendFormat("<div class=\"top4Sort\">{0}</div>", j + 1);
-                                    strbld.AppendFormat("<div class=\"top4Name\">{0}</div>", tempStuName);
+                                    strbld.AppendFormat("<div class=\"top4Name\">{0}</div>", TextHelper.CutString(tempStuName,6,string.Empty));
                                     strbld.Append("</div>");
                                 }
                             }

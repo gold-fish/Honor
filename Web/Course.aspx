@@ -205,14 +205,15 @@
             float:left;
             height:50px;
             margin-top:3px;
-            width:60px;
+            width:52px;
+            position:relative;
         }
         .detailName {
             float:left;
             height:60px;
             line-height:60px;
             width:200px;
-            margin-left:20px;
+            margin-left:0px;
             font-family:SourceHanSansCN-Normal;
             font-size:18px;
             color:rgba(0,0,0,0.58);
