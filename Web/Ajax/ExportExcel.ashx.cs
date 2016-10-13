@@ -115,7 +115,8 @@ namespace Web.Ajax
                             JArray smsArr = item["sms"] as JArray;
 
                             //未邀请
-                            if (smsArr == null) {
+                            if ((smsArr == null) || (smsArr != null && smsArr.Count == 0))
+                            {
                                 IRow iRow = sheet1.CreateRow(rowIndex);
 
                                 iRow.Height = 500;
