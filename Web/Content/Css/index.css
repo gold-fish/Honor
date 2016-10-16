@@ -4,16 +4,80 @@
 }
 .main {
     width:1280px;
-    height:1055px;
+    height:1072px;
     margin:0 auto;
     background-color:white;
 }
+.leftMain,.rightMain {
+    width:960px;
+    height:auto;
+    float:left;
+}
+.rightMain {
+    width:320px;
+}
+
 .header {
     width:100%;
-    height:50px;
-    border-bottom:2px solid #C6C6C6;
+    height:72px;
+    border-bottom:2px solid #E56B54;
+    position:relative;
+    background-color:#F9755B;
+}
+.cup {
+    width:38px;
+    height:36px;
+    background-image:url('../Images/cup.png'); 
+    position:absolute;
+    top:18px;
+    left:30px;
+}
+.cupLogo {
+    cursor:pointer;
+    width:230px;
+    height:36px;
+    line-height:36px;
+    position:absolute;
+    top:19px;
+    left:78px;
+    font-family:SourceHanSansCN-Heavy;
+    font-size:36px;
+    font-weight:bold;
+    color:#ffed5c;
+}
+.cupList {
+    height: 36px;
+    line-height:36px;
+    font-size:16px;
+    font-weight:bold; 
+    width: 300px; 
+    position:absolute;
+    left:350px;
+    top:21px;
+    color:#ffed5c;
+}
+.cupExit {
+    font-size:20px;
+    font-weight:bold; 
+    float:right;
+    width:140px;
+    height:72px; 
+    background:rgba(184,86,67,0.20);
+    font-family:SourceHanSansCN-Medium;   
+    color:#f8e71c;
+   
+    text-align:center;
     position:relative;
 }
+    .cupExit div {
+        position:absolute;
+        left:30px;
+        top:17px;
+        width:80px;
+        height:50px;
+        cursor:pointer;
+        line-height:22px;
+    }
 
 #mySubject {
     min-width:100px;
@@ -50,7 +114,7 @@ color:#c3c3c3;
 
 .content{
     width:100%;
-    height:924px;
+    height:990px;
 }
 .footer{
     padding-top:10px;
@@ -100,34 +164,42 @@ color:#c3c3c3;
 }
 
 .leftContent{
-    width:960px;
+    width:100%;
     height:100%;
     float:left;
     background-color:#F9755B;
     margin-top:-1.5px;
 }
 .rightContent{
-    width:320px;
+    width:100%;
     height:100%;
     float:left;
 }
 .student {
     width:100%;
-    height:612px;
+    height:630px;
     position:relative;
+}
+.groupLogo {
+    width:100%;
+    height:80px;
+    top:20px;
+    left:0;
+    border-bottom:2px solid #ffe68e;
+    position:absolute;
 }
 .group{
     width:100%;
-    height:312px;
+    height:367px;
     background-image:url('../Images/bgbotoom.png');
     position:relative;
 }
 .groupContent{
-    width:810px;
+    width:825px;
     height:250px;
     position:absolute;
-    top:60px;
-    left:145px;
+    top:120px;
+    left:132px;
 }
 #groupLeft,#groupMiddle,#groupRight{
     width:100%;
@@ -155,21 +227,22 @@ color:#c3c3c3;
 }
 .people{
     background-image:url('../Images/sortPrev.png');
-    width:206px;
+    width:216px;
     height:74px;
     float:left;
     position:relative;
 }
 .peopleTitle{
-    width:39px;
+    width:80px;
     height:13px;
     position:absolute;
-    top:16px;
+    top:18px;
     left:90px;
     font-family:PingFangSC-Semibold;
     font-size:12.8px;
-    color:#5ccef9;
+    color:#d0021b;
     line-height:13px;
+    font-weight:bold;
 }
 .peopleName{
     width:133px;
@@ -186,14 +259,15 @@ color:#c3c3c3;
     line-height:11px;
 }
 .peopleScore{
-    width:15px;
+    width:32px;
     height:14px;
     position:absolute;
-    top:26px;
-    left:178px;
+    top:29px;
+    left:180px;
     font-family:Roboto-Bold;
     font-size:12.8px;
-    color:#a57f26;
+    color:#d0021b;
+    font-weight:bold;
     line-height:14px;
     text-align:center;
 }
@@ -201,7 +275,7 @@ color:#c3c3c3;
     width:43px;
     height:43px;
     position:absolute;
-    top:6px;
+    top:10px;
     left:11px;
     
 }
@@ -210,7 +284,7 @@ color:#c3c3c3;
     height:43px;
     position:absolute;
     top:11px;
-    left:61px;
+    left:58px;
 }
 .otherPeople{
     background:url('../Images/sortNormal.png') no-repeat;
@@ -228,8 +302,8 @@ color:#c3c3c3;
     width:26px;
     height:26px;
     position:absolute;
-    top:23px;
-    left:9px;
+    top:24px;
+    left:11px;
     text-align:center;
 }
 .otherTitle{
@@ -259,10 +333,10 @@ color:#c3c3c3;
 }
 
 .otherScore{
-    width:15px;
+    width:32px;
     height:14px;
     position:absolute;
-    top:28px;
+    top:29px;
     left:226px;
     font-family:Roboto-Bold;
     font-size:12.8px;
@@ -271,10 +345,9 @@ color:#c3c3c3;
     text-align:center;
 }
 
-
 .roll{
     position:absolute;
-    left:15px;
+    left:10px;
     top:31px;
     width:138px;
     height:168px;
@@ -297,7 +370,7 @@ color:#c3c3c3;
 }
 .rollBar{
     position:absolute;
-    left:40px;
+    left:35px;
     top:138px;
     width:89px;
     height:709px;
@@ -310,20 +383,18 @@ color:#c3c3c3;
     margin:178px 10px 0 11px;
     font-family:SourceHanSansCN-Heavy;
     font-size:64px;
-    color:#ffffff;
+    color:#ffed5c;
     line-height:70px;
     font-weight:bolder;
 }
 .rightTop{
     width:100%;
-    height:86px;
-    padding-top:13px;
+    height:72px;
 }
 .rightIcon{
-    width:79px;
-    height:78px;
-    margin:0 0 0 20px;
-    background-image:url('../Images/class.png');
+    width:72px;
+    height:72px;
+    margin:2px 0 0 20px;
     float:left;
 }
 .rightTitle{
@@ -342,45 +413,53 @@ color:#c3c3c3;
     width:100%;
     height:50px;
     background-image:url('../Images/bgOne.png');
+    position:relative;
 }
 
 .rightpPrsonal {
     width: 100%;
     height: 50px;
     background-image: url('../Images/bgTwo.png');
+    position:relative;
 }
 
 .rightGroup {
     width: 100%;
     height: 50px;
     background-image: url('../Images/bgThree.png');
+    position:relative;
 }
 .one,.two,.three{
     height:100%;
-    width:33.2%;
-    float:left;
+    width:106px;
     font-size:11.5px;
     line-height:50px;
+    position:absolute;
+    top:0px;
+    text-align:left;
 }
 .one{
     font-family:SourceHanSansCN-Regular;
     color:rgba(0,0,0,0.87);
     text-indent:3.7em;
+    left:0px;
 }
 .two,.three{
     font-family:SourceHanSansCN-Medium;
     color:rgba(0,0,0,0.26);
     text-indent:4.5em;
+    left:106px;
 }
 .three {
     text-indent:5.6em;
+    left:212px;
 }
 #class,#person,#group{
     cursor:pointer;
 }
 .rightBottom {
     width:100%;
-    height:814px;
+    height:928px;
 }
 .rightBottomTable{
     margin-left:10px;
@@ -397,7 +476,7 @@ color:#c3c3c3;
     font-size:16px;
     color:rgba(0,0,0,0.87);
     padding-top:5px;
-    width:225px;
+    width:264px;
 }
 .recordTime{
     font-family:SourceHanSansCN-Regular;
@@ -415,11 +494,12 @@ color:#c3c3c3;
     text-align:right;
 }
 .topType{
-    width:280px;
-    height:29px;
-    position:absolute;
-    top:20px;
-    left:400px;
+    width:100%;
+    height:72px;
+    position:relative;
+    top:5px;
+    left:0;
+    border-bottom:2px solid #ffe68e;
 }
 .date{
     width:60px;
@@ -452,7 +532,7 @@ color:#c3c3c3;
     width:330px;
     height:190px;
     position:absolute;
-    top:55px;
+    top:80px;
     left:368px;
 }
 .top1,.top2,.top3{
@@ -532,7 +612,7 @@ color:#c3c3c3;
     height:342px;
     position:absolute;
     left:140px;
-    top:248px;
+    top:273px;
 }
 .top4{
     width:100px;
@@ -590,12 +670,14 @@ color:#c3c3c3;
     color:#fef8ba;
 }
 .rightRoll {
-    max-height:754px;overflow-y:auto;margin-top:20px;
+    max-height:928px;
+    overflow-y:auto;
+    margin-top:20px;
 }
 /*不显示分组时的样式*/
 .nogroup {
     width:100%;
-    height:252px;
+    height:312px;
     background-image:url('../Images/bgbotoom.png');
     position:relative;
 }
@@ -625,4 +707,41 @@ color:#c3c3c3;
     float:left;
     display:none;
 }
+.rollSetting {
+    width:281px;
+    height:42px;
+    background-image:url('../Images/bgSetting.png');
+    position:absolute;
+    top:13px;
+    right:20px;
+}
+.setTitle {
+    position:absolute;
+    top:7px;
+    left:18px;
+    width:100px;
+    height:30px;
+    font-family:SourceHanSansCN-Heavy;
+    font-size:20px;
+    font-weight:bold;
+    color:#ffed5c;
+    text-shadow:0px 1px 2px rgba(0,0,0,0.26);
+    text-align:left;
+}
+.setLeft {
+    position:absolute;
+    top:12px;
+    left:110px;
+    width:16px;
+    height:18px;
+    background-image:url('../Images/settingLeft.png');
+}
+.setRight {
+    position:absolute;
+    top:12px;
+    left:245px;
+    width:22px;
+    height:20px;
+    background-image:url('../Images/settingRight.png');
+}                                   
 

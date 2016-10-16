@@ -125,6 +125,12 @@
         {
             window.location.href = "Course.aspx";
         }
+
+        function returnLogin() {
+            $.post("Index.aspx?op=return", function (data) {
+                window.location.href = "Login.aspx";
+            });
+        }
     </script>
 </head>
 
@@ -136,43 +142,59 @@
         <input type="hidden" id="hidMaxID" value="0" />
 
         <div class="main" id="main">
-            <div class="header">
-                <div style="cursor:pointer;width:192px;height:31px;background-image:url('Content/Images/return.png'); position:absolute;top:7px;left:45px;" onclick="ReturnHome()"></div>
-                <div id="subjectList" style="height: 30px;font-size:14px; width: 400px; position:absolute;left:320px;top:15px;" runat="server"></div>
-            </div>
-            <div class="content" id="content">
-                <div class="leftContent">
-                    <div class="student">
-                        <div class="roll"></div>
-                        <div class="setting">显示设置</div>
-                        <div class="rollBar">
-                            <div class="rollBarTitle">班级光荣榜</div>
-                        </div>
-                        <div class="topType">
-                            <div class="date" onclick="SelectDate(this,0)">
-                                <div class="topSelectTitle">日排行</div>
-                                <div class="topSelectBg"></div>
-                            </div>
-                            <div class="date" onclick="SelectDate(this,1)">
-                                <div class="topUnselect">周排行</div>
-                                <div class="unTopSelectBg"></div>
-                            </div>
-                            <div class="date" onclick="SelectDate(this,2)">
-                                <div class="topUnselect">月排行</div>
-                                <div class="unTopSelectBg"></div>
-                            </div>
-                        </div>
-                        <div id="studentHonorRoll"></div>
-                    </div>
-                    <div class="group" id="groupDiv">
-                        <div class="groupContent">
-                            <div id="teamRoll"></div>
-                        </div>
-                    </div>
+            <div class="leftMain">
+                 <div class="header">
+                    <div class="cup"></div>
+                    <div class="cupLogo" onclick="ReturnHome()">校朋·光荣榜</div>
+                    <div class="cupList" id="subjectList" runat="server"></div>
+                    <div class="cupExit"><div onclick="returnLogin()">退出<br />光荣榜</div></div>
                 </div>
-                <div class="rightContent">
+                 <div class="content" id="content">
+                    <div class="leftContent">
+                        <div class="student">
+                            <div class="roll"></div>
+                            <div class="rollBar">
+                                <div class="rollBarTitle">班级光荣榜</div>
+                            </div>
+                            <div class="topType">
+                                <img src="Content/Images/classLogo.png" style="margin-left:350px;"/>
+                                <div class="rollSetting">
+                                    <div class="setTitle">显示控制</div>
+                                    <div class="setLeft"></div>
+                                    <div class="setRight"></div>
+                                </div>
+                                
+                                <%--<div class="date" onclick="SelectDate(this,0)">
+                                    <div class="topSelectTitle">日排行</div>
+                                    <div class="topSelectBg"></div>
+                                </div>
+                                <div class="date" onclick="SelectDate(this,1)">
+                                    <div class="topUnselect">周排行</div>
+                                    <div class="unTopSelectBg"></div>
+                                </div>
+                                <div class="date" onclick="SelectDate(this,2)">
+                                    <div class="topUnselect">月排行</div>
+                                    <div class="unTopSelectBg"></div>
+                                </div>--%>
+                            </div>
+                            <div id="studentHonorRoll"></div>
+                        </div>
+                        <div class="group" id="groupDiv">
+                            <div class="groupLogo">
+                                <img src="Content/Images/groupLogo.png" style="margin-left:350px;"/>
+                            </div>
+                            <div class="groupContent">
+                                <div id="teamRoll"></div>
+                            </div>
+                        </div>
+                    </div>              
+                 </div>
+            </div>
+           
+            <div class="rightMain">
+                 <div class="rightContent">
                     <div class="rightTop">
-                        <div class="rightIcon"></div>
+                        <div class="rightIcon"><img src="Content/Images/class.png" style="width:68px;height:68px;"/></div>
                         <div class="rightTitle">全班成员</div>
                     </div>
                     <div class="rightMiddle" id="rghm">
@@ -185,7 +207,8 @@
                     </div>
                 </div>
             </div>
-            <div class="footer">
+           
+            <div class="footer" style="display:none;">
                 <div class="setIcon">显示控制</div>
                 <div class="slide" id="barStudent">
                     <div class="bgSlide" id="student"></div>

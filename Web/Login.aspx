@@ -79,7 +79,7 @@
             </div>
             <div class="loginBtn">
                 <div class="registerDiv"></div>
-                <div class="load">下载手机端注册</div>
+                <div class="load"><a href="Content/Images/weixin.png" target="_blank">下载手机端注册</a></div>
                 <div class="loginDiv">
                     <asp:Button ID="btnLogin" runat="server" Text="登 陆" OnClick="btnLogin_Click" OnClientClick="return CheckData()"/>
                 </div>

@@ -163,7 +163,16 @@
     color:#4f5570;
     text-align:right;
     float:left;
+    cursor:pointer;
 }
+    .load a:link {
+        text-decoration:none;
+        color:#999999;
+    }
+    .load a:visited {
+        text-decoration:none;
+        color:#999999;
+    }
 .loginDiv{
     float:right;
     color:red;

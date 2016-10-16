@@ -93,13 +93,16 @@
     <Content Include="Content\Images\bgbotoom.png" />
     <Content Include="Content\Images\bgLogin.jpg" />
     <Content Include="Content\Images\bgOne.png" />
+    <Content Include="Content\Images\bgSetting.png" />
     <Content Include="Content\Images\bgThree.png" />
     <Content Include="Content\Images\bgTwo.png" />
     <Content Include="Content\Images\checkbox.png" />
     <Content Include="Content\Images\class.png" />
     <Content Include="Content\Images\classIcon.png" />
+    <Content Include="Content\Images\classLogo.png" />
     <Content Include="Content\Images\classSet.png" />
     <Content Include="Content\Images\courseTop.png" />
+    <Content Include="Content\Images\cup.png" />
     <Content Include="Content\Images\day.png" />
     <Content Include="Content\Images\enter.png" />
     <Content Include="Content\Images\enterHigh.png" />
@@ -109,6 +112,7 @@
     <Content Include="Content\Images\fourBg.png" />
     <Content Include="Content\Images\fourScore.png" />
     <Content Include="Content\Images\fourSort.png" />
+    <Content Include="Content\Images\groupLogo.png" />
     <Content Include="Content\Images\loginImage.png" />
     <Content Include="Content\Images\loginPwd.png" />
     <Content Include="Content\Images\loginTop.png" />
@@ -117,12 +121,13 @@
     <Content Include="Content\Images\person.png" />
     <Content Include="Content\Images\phone.png" />
     <Content Include="Content\Images\register.png" />
-    <Content Include="Content\Images\return.png" />
     <Content Include="Content\Images\roll.png" />
     <Content Include="Content\Images\rollBar.png" />
     <Content Include="Content\Images\second.png" />
     <Content Include="Content\Images\setIcon.png" />
     <Content Include="Content\Images\setting.png" />
+    <Content Include="Content\Images\settingLeft.png" />
+    <Content Include="Content\Images\settingRight.png" />
     <Content Include="Content\Images\slide.png" />
     <Content Include="Content\Images\sortNormal.png" />
     <Content Include="Content\Images\sortPrev.png" />
@@ -134,6 +139,7 @@
     <Content Include="Content\Images\topBg.png" />
     <Content Include="Content\Images\topPerson.png" />
     <Content Include="Content\Images\topScore.png" />
+    <Content Include="Content\Images\weixin.png" />
     <Content Include="Course.aspx" />
     <Content Include="Dll\ICSharpCode.SharpZipLib.dll" />
     <Content Include="Dll\Newtonsoft.Json.dll" />

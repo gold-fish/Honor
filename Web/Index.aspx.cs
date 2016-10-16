@@ -16,6 +16,15 @@ namespace Web
         {
             if (!IsPostBack)
             {
+                if (Request.QueryString["op"] != null && Request.QueryString["op"].ToString() == "return") {
+                    Session["userInfo"] = null;
+
+                    Response.Clear();
+                    Response.ContentType = "text/plain";
+                    Response.Write(string.Empty);
+                    Response.End();  
+                }
+
                 #region 判断地址中的ID是否合法
 
                 if (Request.QueryString["CID"] != null && Request.QueryString["CID"].ToString() != string.Empty                    
@@ -51,7 +60,7 @@ namespace Web
                                 {
                                     lblClassName.Text = TextHelper.CutString(strClassName,6);
 
-                                    sb.AppendFormat("请选择科目: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id=\"mySubject\" onchange=\"SelectSubject()\"><option value=\"{0}\">全部</option>", classID);
+                                    sb.AppendFormat("请选择科目: &nbsp;&nbsp;&nbsp;&nbsp;<select id=\"mySubject\" onchange=\"SelectSubject()\"><option value=\"{0}\">全部</option>", classID);
 
                                     var subjectArr = item["subjects"] as JArray;
 
