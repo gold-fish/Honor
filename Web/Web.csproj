@@ -90,6 +90,7 @@
     <Content Include="Content\Images\addClass.png" />
     <Content Include="Content\Images\addStudent.png" />
     <Content Include="Content\Images\addStudentBtn.png" />
+    <Content Include="Content\Images\ball.png" />
     <Content Include="Content\Images\bgbotoom.png" />
     <Content Include="Content\Images\bgLogin.jpg" />
     <Content Include="Content\Images\bgOne.png" />

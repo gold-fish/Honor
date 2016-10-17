@@ -35,7 +35,7 @@
                     var audio = arr[0];
                     var maxID = arr[1];
                     
-                    $("#audio").html(audio);
+                    //$("#audio").html(audio);
 
                     var prevMaxID = parseInt($("#hidMaxID").val());
 
@@ -161,21 +161,12 @@
                                 <div class="rollSetting">
                                     <div class="setTitle">显示控制</div>
                                     <div class="setLeft"></div>
+                                    <div class="setSlide" id="barStudent" style="display:none;">
+                                        <div class="setSlideLine" id="student"></div>
+                                        <div id="btnStudent"></div>
+                                    </div>
                                     <div class="setRight"></div>
                                 </div>
-                                
-                                <%--<div class="date" onclick="SelectDate(this,0)">
-                                    <div class="topSelectTitle">日排行</div>
-                                    <div class="topSelectBg"></div>
-                                </div>
-                                <div class="date" onclick="SelectDate(this,1)">
-                                    <div class="topUnselect">周排行</div>
-                                    <div class="unTopSelectBg"></div>
-                                </div>
-                                <div class="date" onclick="SelectDate(this,2)">
-                                    <div class="topUnselect">月排行</div>
-                                    <div class="unTopSelectBg"></div>
-                                </div>--%>
                             </div>
                             <div id="studentHonorRoll"></div>
                         </div>
@@ -210,14 +201,11 @@
            
             <div class="footer" style="display:none;">
                 <div class="setIcon">显示控制</div>
-                <div class="slide" id="barStudent">
-                    <div class="bgSlide" id="student"></div>
-                    <div id="btnStudent"></div>
-                </div>
-                <div class="slide" id="barTeam">
-                    <div class="bgSlide" id="team"></div>
-                    <div id="btnTeam"></div>
-                </div>
+                
+                 <div class="slide" id="barTeam"> 
+                     <div class="bgSlide" id="team"></div> 
+                     <div id="btnTeam"></div> 
+                 </div> 
             </div>
             
             <div id="audio" style="display:none;"></div>
