@@ -32,16 +32,31 @@
                 //定时去获取有没有最新的扣、加分行为
                 $.post("Ajax/HonorRollDetails.ashx?op=getMax&ms=" + ms, { classOrSubjectID: classOrSubjectID, classType: classType, maxID: maxID, type: type }, function (data) {
                     var arr = data.split(',');
-                    var audio = arr[0];
-                    var maxID = arr[1];
-                    
-                    //$("#audio").html(audio);
+                    var effect = arr[0];
+                    var stuName = arr[1];
+                    var maxID = arr[2];
 
                     var prevMaxID = parseInt($("#hidMaxID").val());
 
                     if (maxID != "0" && parseInt(maxID) > prevMaxID) {
                         $("#hidMaxID").val(maxID);
                         
+                        var content = "<div>" + stuName + "</div>";
+
+                        //积极行为
+                        if (effect == "1") {
+                            $("#active").html(content);
+
+                            $("#active").fadeIn(1000);
+                            $("#active").fadeOut(3000);
+                        }
+                        else {
+                            $("#inactive").html(content);
+
+                            $("#inactive").fadeIn(1000);
+                            $("#inactive").fadeOut(3000);
+                        }
+
                         loadHonorRollData();
 
                         //显示右侧扣分榜
@@ -50,7 +65,7 @@
                 });
             }
 
-            setTimeout("ShowData()", 3000);
+            setTimeout("ShowData()", 1000);
         }
 
         function SelectSubject() {
@@ -206,9 +221,10 @@
                      <div class="bgSlide" id="team"></div> 
                      <div id="btnTeam"></div> 
                  </div> 
-            </div>
+            </div>  
             
-            <div id="audio" style="display:none;"></div>
+            <div id="active"><div>李金云</div></div>
+            <div id="inactive"><div>刘三乐</div></div>          
         </div>
     </form>
 </body>

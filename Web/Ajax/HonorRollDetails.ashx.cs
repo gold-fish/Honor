@@ -69,8 +69,8 @@ namespace Web.Ajax
                 var classOrSubjectID = context.Request.Params["classOrSubjectID"].ToString().Trim();
                 var classType = context.Request.Params["classType"].ToString().Trim();
                 var maxID = context.Request.Params["maxID"].ToString().Trim();
-                var type = context.Request.Params["type"].ToString().Trim();
-
+                var type = context.Request.Params["type"].ToString().Trim();              
+                
                 string url = string.Format("{0}?class_id={1}&class_report_id={2}&type={3}", ApiUrl, classOrSubjectID, maxID, type);
 
                 if (classType == "1") {
@@ -98,35 +98,19 @@ namespace Web.Ajax
                         {
                             CacheHelper.RemoveAllCache();
 
-                            for (int i = 0; i < objArray.Count-1; i++)
-                            {
-                                string actionStr = objArray[i]["behavior_type"].ToString().Trim(); //1：积极行为，2：消极行为
-                                string browser = context.Request.Browser.Type.ToLower();
+                            string actionStr = objArray[0]["behavior_type"].ToString().Trim(); //1：积极行为，2：消极行为
+                            string stuName = "";
 
-                                //Chrome浏览器
-                                if (browser.IndexOf("chrome") > -1 || browser.IndexOf("firefox") > -1)
-                                {
-                                    if (actionStr == "1")
-                                    {
-                                        strbld.Append("<audio src=\"Wav/active.wav\" autoplay=\"autoplay\"></audio>");
-                                    }
-                                    else
-                                    {
-                                        strbld.Append("<audio src=\"Wav/inactive.wav\" autoplay=\"autoplay\"></audio>");
-                                    }
-                                }
-                                else
-                                {
-                                    if (actionStr == "1")
-                                    {
-                                        strbld.Append("<embed src=\"Wav/active.wav\" loop=1/>");
-                                    }
-                                    else
-                                    {
-                                        strbld.Append("<embed src=\"Wav/inactive.wav\" loop=1/>");
-                                    }
-                                }
+                            JObject studentObj = objArray[0]["student"] as JObject;
+
+                            if (studentObj["name_class"] != null)
+                            {
+                                stuName = studentObj["name_class"].ToString().Trim();
                             }
+
+                            strbld.Append(actionStr);
+                            strbld.Append(",");
+                            strbld.Append(stuName);
                         }
                     }
                 }
