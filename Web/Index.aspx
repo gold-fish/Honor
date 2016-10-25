@@ -223,8 +223,8 @@
                  </div> 
             </div>  
             
-            <div id="active"><div>李金云</div></div>
-            <div id="inactive"><div>刘三乐</div></div>          
+            <div id="active"><div></div></div>
+            <div id="inactive"><div></div></div>          
         </div>
     </form>
 </body>

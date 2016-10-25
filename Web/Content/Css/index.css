@@ -228,8 +228,8 @@ color:#c3c3c3;
 }
 .people{
     background-image:url('../Images/sortPrev.png');
-    width:216px;
-    height:74px;
+    width:219px;
+    height:78px;
     float:left;
     position:relative;
 }
@@ -237,8 +237,8 @@ color:#c3c3c3;
     width:80px;
     height:13px;
     position:absolute;
-    top:18px;
-    left:90px;
+    top:19px;
+    left:100px;
     font-family:PingFangSC-Semibold;
     font-size:12.8px;
     color:#d0021b;
@@ -250,7 +250,7 @@ color:#c3c3c3;
     height:11px;
     position:absolute;
     top:41px;
-    left:47px;
+    left:57px;
     font-family:SourceHanSansCN-Heavy;
     font-size:11px;    
     font-size:11.5px\9;   
@@ -264,7 +264,7 @@ color:#c3c3c3;
     height:14px;
     position:absolute;
     top:29px;
-    left:180px;
+    left:183px;
     font-family:Roboto-Bold;
     font-size:12.8px;
     color:#d0021b;
@@ -276,8 +276,8 @@ color:#c3c3c3;
     width:43px;
     height:43px;
     position:absolute;
-    top:10px;
-    left:11px;
+    top:12px;
+    left:14px;
     
 }
 .peopleImage2{
@@ -285,15 +285,16 @@ color:#c3c3c3;
     height:43px;
     position:absolute;
     top:11px;
-    left:58px;
+    left:61px;
 }
 .otherPeople{
     background:url('../Images/sortNormal.png') no-repeat;
     width:33%;
-    height:74px;
+    height:78px;
     float:left;
     margin-left:2px;
     position:relative;
+    background-position-x:10px;
 }
 .otherSort{
     font-family:Roboto-Black;
@@ -304,15 +305,15 @@ color:#c3c3c3;
     height:26px;
     position:absolute;
     top:24px;
-    left:11px;
+    left:13px;
     text-align:center;
 }
 .otherTitle{
     width:39px;
     height:13px;
     position:absolute;
-    top:18px;
-    left:140px;
+    top:20px;
+    left:150px;
     font-family:PingFangSC-Semibold;
     font-size:12.8px;
     color:#5ccef9;
@@ -323,7 +324,7 @@ color:#c3c3c3;
     height:11px;
     position:absolute;
     top:41px;
-    left:97px;
+    left:107px;
     font-family:SourceHanSansCN-Heavy;
     font-size:11px;    
     font-size:11.5px\9;    
@@ -338,7 +339,7 @@ color:#c3c3c3;
     height:14px;
     position:absolute;
     top:29px;
-    left:226px;
+    left:230px;
     font-family:Roboto-Bold;
     font-size:12.8px;
     color:#a57f26;
@@ -771,30 +772,31 @@ color:#c3c3c3;
 }
 #active {
     position:absolute;
-    left:400px;
-    top:250px;
-    width:317px;
-    height:326px;
+    left:180px;
+    top:140px;
+    width:634px;
+    height:652px;
     z-index:9999;
     background-image:url('../Images/active.png');
-    display:none;  
+    display:none;
 }
     #active div {
         font-weight: bold;
         text-align: center;
-        font-size: 20px;
+        font-size: 30px;
+        line-height:30px;
         color: white;
         position:absolute;
-        left:102px;
-        top:143px;
-        width:100px;
+        left:230px;
+        top:297px;
+        width:150px;
     }
 #inactive {
     position:absolute;
-    left:447px;
-    top:305px;
-    width:212px;
-    height:211px;
+    left:273px;
+    top:250px;
+    width:423px;
+    height:422px;
     z-index:9999;
     background-image:url('../Images/inactive.png');
     display:none;
@@ -802,11 +804,12 @@ color:#c3c3c3;
     #inactive div {
         font-weight: bold;
         text-align: center;
-        font-size: 20px;
+        font-size: 30px;
+        line-height:30px;
         color: #fef8ba;
         position:absolute;
-        left:56px;
-        top:88px;
-        width:100px;
+        left:136px;
+        top:188px;
+        width:150px;
     }                                  
 

@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 
 namespace Web.Utils
 {
@@ -13,11 +14,14 @@ namespace Web.Utils
         public static void WriteCookie(string strName, string key, string strValue)
         {
             HttpCookie cookie = HttpContext.Current.Request.Cookies[strName];
+            
             if (cookie == null)
             {
                 cookie = new HttpCookie(strName);
             }
+
             cookie[key] = strValue;
+            cookie.Expires = DateTime.Now.AddDays(60);
             HttpContext.Current.Response.AppendCookie(cookie);
         }
 
